@@ -1,0 +1,71 @@
+<?php namespace Samuell\ContentEditor\Components;
+
+use File;
+use BackendAuth;
+use Cms\Classes\Content;
+use Cms\Classes\ComponentBase;
+
+class ContentEditor extends ComponentBase
+{
+    public $content;
+    public $isEditor;
+    public $file;
+
+    public function componentDetails()
+    {
+        return [
+            'name'        => 'Content Editor',
+            'description' => 'Edit your front ent content in page.'
+        ];
+    }
+
+    public function defineProperties()
+    {
+        return [
+            'file' => [
+                'title'       => 'Content file',
+                'description' => 'Content block filename to edit, optional',
+                'default'     => '',
+                'type'        => 'dropdown',
+            ]
+        ];
+    }
+    public function getFileOptions()
+    {
+        return Content::sortBy('baseFileName')->lists('baseFileName', 'fileName');
+    }
+    public function onRun()
+    {
+        $this->isEditor = $this->checkEditor();
+        if ($this->isEditor) {
+            $this->addCss('assets/content-tools.min.css');
+            $this->addJs('assets/content-tools.min.js');
+            $this->addJs('assets/contenteditor.js');
+        }
+    }
+    public function onRender()
+    {
+        $this->file = $this->property('file');
+        $this->fileMode = File::extension($this->property('file'));
+
+        if (!$this->isEditor){
+            return $this->renderContent($this->file);
+        }else{
+            $this->content = $this->renderContent($this->file);
+        }
+    }
+    public function onSave()
+    {
+        if ($this->checkEditor()){
+            $fileName = post('file');
+            $template = Content::load($this->getTheme(), $fileName);
+            $template->fill(['markup' => post('content')]);
+            $template->save();
+        }
+    }
+    public function checkEditor()
+    {
+        $backendUser = BackendAuth::getUser();
+        return $backendUser && $backendUser->hasAccess('cms.manage_content');
+    }
+}
