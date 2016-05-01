@@ -15,7 +15,7 @@ class ContentEditor extends ComponentBase
     {
         return [
             'name'        => 'Content Editor',
-            'description' => 'Edit your front ent content in page.'
+            'description' => 'Edit your front-end content in page.'
         ];
     }
 
@@ -47,10 +47,20 @@ class ContentEditor extends ComponentBase
     {
         $this->file = $this->property('file');
         $this->fileMode = File::extension($this->property('file'));
+        
+        /*
+         * Compatability with RainLab.Translate
+         */
+        if (class_exists('\RainLab\Translate\Classes\Translator')){
+            $locale = \RainLab\Translate\Classes\Translator::instance()->getLocale();
+            $fileName = substr_replace($this->file, '.'.$locale, strrpos($this->file, '.'), 0);
+            if (($content = Content::loadCached($this->page->controller->getTheme(), $fileName)) !== null)
+                $this->file = $fileName;
+        }
 
         if (!$this->isEditor){
             return $this->renderContent($this->file);
-        }else{
+        } else {
             $this->content = $this->renderContent($this->file);
         }
     }
