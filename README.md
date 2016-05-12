@@ -12,8 +12,4 @@ http://octobercms.com/plugin/samuell-contenteditor
 {% component 'contenteditor' file="filename_in_content.htm" %}
 ```
 
-### Planned features ###
-* Image upload to storage
-* Database saving
-
 *Inspired by [Editable plugin](http://octobercms.com/plugin/rainlab-editable) and using Content tools editor  http://getcontenttools.com.*
