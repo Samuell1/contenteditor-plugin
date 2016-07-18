@@ -3,6 +3,7 @@
 use File;
 use BackendAuth;
 use Cms\Classes\Content;
+use Cms\Classes\CmsObject;
 use Cms\Classes\ComponentBase;
 
 class ContentEditor extends ComponentBase
@@ -70,7 +71,7 @@ class ContentEditor extends ComponentBase
         if ($this->checkEditor()){
 
             $fileName = post('file');
-            $template = Content::load($this->getTheme(), $fileName);
+            $template = CmsObject::inTheme($this->getTheme()); //Content::load($this->getTheme(), $fileName);
             $template->fill([
                 'fileName' => $fileName,
                 'markup' => post('content')
