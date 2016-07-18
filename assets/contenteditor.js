@@ -10,7 +10,7 @@ editor.addEventListener('saved', function (ev) {
 
         if (regions.hasOwnProperty(name))
         {
-            var component = $('*[data-file=' + name + ']').data('component'); // check for component name
+            var component = $('*[data-file="' + name + '"]').data('component'); // check for component name
             $.request(component, {
                 data: {
                     file: name,

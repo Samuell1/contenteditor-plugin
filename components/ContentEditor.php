@@ -45,9 +45,8 @@ class ContentEditor extends ComponentBase
     }
     public function onRender()
     {
-        $this->file = $this->property('file');
 
-        var_dump(File::extension($this->file));
+        $this->file = $this->property('file');
 
         /*
          * Compatability with RainLab.Translate
@@ -69,6 +68,7 @@ class ContentEditor extends ComponentBase
     public function onSave()
     {
         if ($this->checkEditor()){
+
             $fileName = post('file');
             $template = Content::load($this->getTheme(), $fileName);
             $template->fill([
@@ -76,6 +76,7 @@ class ContentEditor extends ComponentBase
                 'markup' => post('content')
             ]);
             $template->save();
+
         }
     }
     public function checkEditor()
