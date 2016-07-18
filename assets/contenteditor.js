@@ -7,8 +7,11 @@ editor.addEventListener('saved', function (ev) {
     regions = ev.detail().regions;
 
     for (name in regions) {
-        if (regions.hasOwnProperty(name)) {
-            $.request("contenteditor::onSave", {
+
+        if (regions.hasOwnProperty(name))
+        {
+            var component = $('*[data-file=' + name + ']').data('component'); // check for component name
+            $.request(component, {
                 data: {
                     file: name,
                     content: regions[name]
