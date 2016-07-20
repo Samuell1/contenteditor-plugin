@@ -17,8 +17,8 @@ class Plugin extends PluginBase
       public function pluginDetails()
       {
          return [
-             'name'        => 'ContentEditor',
-             'description' => 'Frontend content editor',
+             'name'        => 'Content Editor',
+             'description' => 'Front-end content editor',
              'author'      => 'Samuell',
              'icon'        => 'icon-edit'
          ];

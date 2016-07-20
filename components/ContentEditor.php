@@ -6,6 +6,8 @@ use Cms\Classes\Content;
 use Cms\Classes\CmsObject;
 use Cms\Classes\ComponentBase;
 
+use Samuell\ContentEditor\Models\Settings;
+
 class ContentEditor extends ComponentBase
 {
     public $content;
@@ -83,6 +85,6 @@ class ContentEditor extends ComponentBase
     public function checkEditor()
     {
         $backendUser = BackendAuth::getUser();
-        return $backendUser && $backendUser->hasAccess('cms.manage_content');
+        return $backendUser && $backendUser->hasAccess(Settings::get('permissions', 'cms.manage_content'));
     }
 }

@@ -7,3 +7,7 @@ fields:
         span: left
         label: Buttons
         type: checkboxlist
+    permissions:
+        span: right
+        label: Permissions
+        commentAbove: Show Content Editor only for
