@@ -3,4 +3,7 @@
 # ===================================
 
 fields:
-    // TODO
+    enabled_buttons:
+        span: left
+        label: Buttons
+        type: checkboxlist

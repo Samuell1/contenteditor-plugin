@@ -23,10 +23,26 @@ class Plugin extends PluginBase
              'icon'        => 'icon-edit'
          ];
       }
+
       public function registerComponents()
       {
          return [
              'Samuell\ContentEditor\Components\ContentEditor' => 'contenteditor',
          ];
+      }
+
+      public function registerSettings()
+      {
+          return [
+              'settings' => [
+                  'label'       => 'Content Editor Settings',
+                  'description' => 'Manage main editor settings.',
+                  'category'    => 'Misc',
+                  'icon'        => 'icon-cog',
+                  'class'       => 'Samuell\ContentEditor\Models\Settings',
+                  'order'       => 500,
+                  'permissions' => ['samuell.contenteditor.access_settings']
+              ]
+          ];
       }
 }
