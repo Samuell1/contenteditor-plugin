@@ -39,8 +39,6 @@ class ContentEditor extends ComponentBase
     public function onRun()
     {
         if ($this->checkEditor()) {
-            $this->page["editorButtons"] = Settings::get('enabled_buttons');
-
             $this->addCss('assets/content-tools.min.css');
             $this->addJs('assets/content-tools.min.js');
             $this->addJs('assets/contenteditor.js');
@@ -48,6 +46,8 @@ class ContentEditor extends ComponentBase
     }
     public function onRender()
     {
+
+        $this->page["editorButtons"] = Settings::get('enabled_buttons');
 
         $this->file = $this->property('file');
 
