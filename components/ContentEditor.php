@@ -11,7 +11,6 @@ use Samuell\ContentEditor\Models\Settings;
 class ContentEditor extends ComponentBase
 {
     public $content;
-    public $isEditor;
     public $file;
 
     public function componentDetails()
@@ -39,8 +38,9 @@ class ContentEditor extends ComponentBase
     }
     public function onRun()
     {
-        $this->isEditor = $this->checkEditor();
-        if ($this->isEditor) {
+        if ($this->checkEditor()) {
+            $this->page["editorButtons"] = Settings::get('enabled_buttons');
+
             $this->addCss('assets/content-tools.min.css');
             $this->addJs('assets/content-tools.min.js');
             $this->addJs('assets/contenteditor.js');
@@ -61,7 +61,7 @@ class ContentEditor extends ComponentBase
                 $this->file = $fileName;
         }
 
-        if ($this->isEditor){
+        if ($this->checkEditor()){
             if (Content::load($this->getTheme(), $this->file))
                 $this->content = $this->renderContent($this->file);
         } else {
@@ -74,17 +74,17 @@ class ContentEditor extends ComponentBase
 
             $fileName = post('file');
 
-            if($load = Content::load($this->getTheme(), $fileName)) {
-                $file = $load; // load
+            if ($load = Content::load($this->getTheme(), $fileName)) {
+                $fileContent = $load; // load existed content file
             }else{
-                $file = Content::inTheme($this->getTheme()); // create new content file if not exists
+                $fileContent = Content::inTheme($this->getTheme()); // create new content file if not exists
             }
 
-            $file->fill([
+            $fileContent->fill([
                 'fileName' => $fileName,
                 'markup' => post('content')
             ]);
-            $file->save();
+            $fileContent->save();
 
         }
     }

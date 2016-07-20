@@ -4,3 +4,20 @@
     data-file="{{ __SELF__.file }}">
     {{ __SELF__.content|raw }}
 </div>
+
+{% put scripts %}
+<script type="text/javascript">
+editor.toolbox().tools([
+                            [
+                            {% for key, value in contentButtons %}
+                                '{{ button.value }}',
+                            {% endfor %}
+                             ],
+                             [
+                                'undo',
+                                'redo',
+                                'remove'
+                            ]
+                        ]);
+</script>
+{% endput %}
