@@ -62,7 +62,7 @@ class ContentEditor extends ComponentBase
         }
 
         if ($this->isEditor){
-            if (file_exists($this->getTheme()->getPath().$this->file))
+            if (Content::load($this->getTheme(), $this->file))
                 $this->content = $this->renderContent($this->file);
         } else {
             return $this->renderContent($this->file);
@@ -73,12 +73,18 @@ class ContentEditor extends ComponentBase
         if ($this->checkEditor()){
 
             $fileName = post('file');
-            $template = CmsObject::inTheme($this->getTheme()); //Content::load($this->getTheme(), $fileName);
-            $template->fill([
+
+            if($load = Content::load($this->getTheme(), $fileName)) {
+                $file = $load; // load
+            }else{
+                $file = Content::inTheme($this->getTheme()); // create new content file if not exists
+            }
+
+            $file->fill([
                 'fileName' => $fileName,
                 'markup' => post('content')
             ]);
-            $template->save();
+            $file->save();
 
         }
     }

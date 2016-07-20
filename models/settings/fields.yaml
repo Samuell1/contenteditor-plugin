@@ -10,4 +10,4 @@ fields:
     permissions:
         span: right
         label: Permissions
-        commentAbove: Show Content Editor only for
+        commentAbove: Show Content Editor only for (default: cms.manage_content)
