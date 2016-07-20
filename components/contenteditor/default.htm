@@ -9,7 +9,7 @@
 <script type="text/javascript">
 editor.toolbox().tools([
                             [
-                            {% for key, value in contentButtons %}
+                            {% for value in __SELF__.contentButtons %} // not working
                                 '{{ value }}',
                             {% endfor %}
                              ],

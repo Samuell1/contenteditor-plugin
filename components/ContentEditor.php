@@ -12,6 +12,7 @@ class ContentEditor extends ComponentBase
 {
     public $content;
     public $file;
+    public $editorButtons;
 
     public function componentDetails()
     {
@@ -39,6 +40,10 @@ class ContentEditor extends ComponentBase
     public function onRun()
     {
         if ($this->checkEditor()) {
+
+            $this->editorButtons = Settings::get('enabled_buttons');
+
+            // put content tools js + css
             $this->addCss('assets/content-tools.min.css');
             $this->addJs('assets/content-tools.min.js');
             $this->addJs('assets/contenteditor.js');
@@ -47,13 +52,9 @@ class ContentEditor extends ComponentBase
     public function onRender()
     {
 
-        $this->page["editorButtons"] = Settings::get('enabled_buttons');
-
         $this->file = $this->property('file');
 
-        /*
-         * Compatability with RainLab.Translate
-         */
+        // Compatability with RainLab.Translate
         if (class_exists('\RainLab\Translate\Classes\Translator')){
             $locale = \RainLab\Translate\Classes\Translator::instance()->getLocale();
             $fileName = substr_replace($this->file, '.'.$locale, strrpos($this->file, '.'), 0);
