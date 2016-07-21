@@ -110,8 +110,6 @@ class ContentEditor extends ComponentBase
                  $uploadedFile = Input::file('file');
                  $fileName = $uploadedFile->getClientOriginalName();
 
-
-
                  // Convert uppcare case file extensions to lower case
                  $extension = strtolower($uploadedFile->getClientOriginalExtension());
                  $fileName = File::name($fileName).'.'.$extension;
@@ -156,10 +154,10 @@ class ContentEditor extends ComponentBase
                 'width' => post('width'),
                 'crop'  => post('crop'),
                 'alt'   => "Image",
-                'size' => [
-                        'width' => $width,
-                        'height' => $height
-                        ]
+                'size'  => [
+                            'width' => $width,
+                            'height' => $height
+                            ]
             ]);
         }
     }

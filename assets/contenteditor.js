@@ -131,17 +131,21 @@ function imageUploader(dialog) {
     });
 
     // Image upload
-    dialog.addEventListener('imageuploader.fileready', function (file) {
+    dialog.addEventListener('imageuploader.fileready', function (ev) {
 
         var formData;
+        var file = ev.detail().file;
 
         dialog.state('uploading');
         dialog.progress(0);
 
-        formData = new FormData();
+        var formData = new FormData();
         formData.append('image', file);
 
         $.request("contenteditor::onUploadImage", {
+            proccessData: false,
+            contentType: false,
+            data: formData,
             xhr: function() {
 
                 var xhr = new window.XMLHttpRequest();
@@ -150,7 +154,6 @@ function imageUploader(dialog) {
                   if (evt.lengthComputable) {
                     var percentComplete = evt.loaded / evt.total;
                     percentComplete = parseInt(percentComplete * 100);
-                    console.log(percentComplete);
                     dialog.progress(percentComplete);
 
                     if (percentComplete === 100) {
@@ -160,7 +163,6 @@ function imageUploader(dialog) {
                 }, false);
                 return xhr;
             },
-            data: formData,
             success: function(result) {
                 var response = JSON.parse(result);
 
@@ -184,11 +186,14 @@ function imageUploader(dialog) {
 
         dialog.busy(true);
 
-        formData = new FormData();
+        var formData = new FormData();
         formData.append('url', image.url);
         formData.append('width', 600);
 
         $.request("contenteditor::onSaveImage", {
+            proccessData: false,
+            contentType: false,
+            data: formData,
             xhr: function() {
 
                 var xhr = new window.XMLHttpRequest();
@@ -207,7 +212,6 @@ function imageUploader(dialog) {
                 }, false);
                 return xhr;
             },
-            data: formData,
             success: function(result) {
                 var response = JSON.parse(result);
 
@@ -228,4 +232,4 @@ function imageUploader(dialog) {
     });
 
 }
-editor.IMAGE_UPLOADER = imageUploader;
+ContentTools.IMAGE_UPLOADER = imageUploader;
