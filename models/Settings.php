@@ -24,8 +24,10 @@ class Settings extends Model
 
             'heading'   => 'heading (h1)',
             'subheading' => 'subheading (h2)',
-            //'subheading3' => 'subheading3',
-            //'subheading4' => 'subheading4',
+
+            'subheading3' => 'subheading3 (h3)',
+            'subheading4' => 'subheading4 (h4)',
+            'subheading5' => 'subheading5 (h5)',
 
             'paragraph'   => 'paragraph',
             'unordered-list' => 'unordered-list',
