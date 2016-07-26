@@ -164,13 +164,13 @@ function imageUploader(dialog) {
 
                 // Store the image details
                 image = {
-                    size: response.size,
-                    url: response.url
-                    };
+                        size: response.size,
+                        alt: response.filename,
+                        url: response.url
+                        };
 
                 // Populate the dialog
                 dialog.populate(image.url, image.size);
-
             } else {
                 // The request failed, notify the user
                 new ContentTools.FlashUI('no');
@@ -223,9 +223,7 @@ function imageUploader(dialog) {
                     response.size,
                     {
                         'alt': response.alt,
-                        'width': response.size.width,
-                        'height': response.size.height,
-                        'data-ce-max-width': response.size.width,
+                        'data-ce-max-width': response.size[0],
                     });
 
             } else {
@@ -237,15 +235,12 @@ function imageUploader(dialog) {
         // Set the dialog to busy while the rotate is performed
         dialog.busy(true);
 
-        console.log(image);
-
         // Build the form data to post to the server
         formData = new FormData();
         formData.append('url', image.url);
-
-        // Set the width of the image when it's inserted, this is a default
-        // the user will be able to resize the image afterwards.
-        formData.append('width', 600);
+        formData.append('width', image.size[0]);
+        formData.append('height', image.size[1]);
+        formData.append('alt', image.alt);
 
         // Check if a crop region has been defined by the user
         if (dialog.cropRegion()) {

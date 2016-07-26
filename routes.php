@@ -43,10 +43,15 @@ Route::post('/samuell/contenteditor/image/upload', function () {
                  File::get($uploadedFile->getRealPath())
              );
 
+             list($width, $height) = getimagesize($uploadedFile);
+
              return Response::json([
-                 'url'  => '/storage/app/media'.$path.'/'.$fileName,
+                 'url'      => '/storage/app/media'.$path.'/'.$fileName,
                  'filename' => $fileNameSlug,
-                 'size' => '600'
+                 'size'     => [
+                                $width,
+                                $height
+                                ]
              ]);
          }
          catch (Exception $ex) {
@@ -61,16 +66,14 @@ Route::post('/samuell/contenteditor/image/save', function () {
 
     if (checkEditor()) {
 
-        //list($width, $height) = getimagesize(post('url'));
-
         return Response::json([
             'url'   => post('url'),
             'width' => post('width'),
             'crop'  => post('crop'),
-            'alt'   => "Image",
+            'alt'   => post('alt'),
             'size'  => [
-                        'width' => '200',
-                        'height' => '200'
+                        post('width'),
+                        post('height')
                         ]
         ]);
 
