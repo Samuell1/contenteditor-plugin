@@ -2,16 +2,45 @@
 #  Form Field Definitions
 # ===================================
 
-fields:
-    enabled_buttons:
-        span: left
-        label: Buttons
-        type: checkboxlist
-    permissions:
-        span: right
-        label: Permissions
-        commentAbove: Show Content Editor only for (default = cms.manage_content)
-    image_folder:
-        span: right
-        label: Image folder
-        commentAbove: Upload images in (default = contenteditor)
+tabs:
+    fields:
+
+        ####
+        enabled_buttons:
+            tab: Main settings
+            span: left
+            label: Buttons
+            type: checkboxlist
+        permissions:
+            tab: Main settings
+            span: right
+            label: Permissions
+            commentAbove: Show Content Editor only for (default = cms.manage_content)
+        image_folder:
+            tab: Main settings
+            span: right
+            label: Image folder
+            commentAbove: Upload images in (default = contenteditor)
+
+        ####
+        style_palettes:
+            tab: Style palettes
+            label: Style palettes
+            type: repeater
+            form:
+                fields:
+                    name:
+                        label: Name
+                        span: left
+                    class:
+                        label: Class
+                        span: left
+                    allowed_tags:
+                        label: Allowed tags (separated by commas - 'p','img',...)
+                        span: right
+        ####
+        external_css:
+            tab: Style palettes CSS
+            type: codeeditor
+            size: huge
+            language: css

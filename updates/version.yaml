@@ -1,7 +1,8 @@
 1.0.1: First version of ContentEditor
 1.0.2: Support for translate plugin
 1.0.3:
+    - Image upload to MediaLibrary
     - Autocreate file if not exists
     - Get actual component name to request
-    - Settings in administration
+    - Settings in backend
     - create_settings_table.php

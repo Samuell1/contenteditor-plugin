@@ -1,4 +1,48 @@
 /*
+* Load ContentTools
+*/
+
+var editor = ContentTools.EditorApp.get();
+editor.init('*[data-editable]', 'data-file');
+
+/*
+* Save event
+*/
+editor.addEventListener('saved', function (ev) {
+
+    this.busy(true);
+    regions = ev.detail().regions;
+
+    for (name in regions) {
+
+        if (regions.hasOwnProperty(name))
+        {
+            var component = $('*[data-file="' + name + '"]').data('component'); // check for component name
+            $.request(component, {
+                data: {
+                    file: name,
+                    content: regions[name]
+                }
+            });
+        }
+    }
+
+    new ContentTools.FlashUI('ok');
+    setTimeout(function(){
+        editor.busy(false);
+    }, 600);
+
+});
+
+/*
+* Style Palettes
+*/
+ContentTools.StylePalette.add([
+    new ContentTools.Style('Float left', 'float-left', ['img', 'p']),
+    new ContentTools.Style('Float right', 'float-right', ['img', 'p']),
+]);
+
+/*
 * Predefined tools
 */
 var __hasProp = {}.hasOwnProperty;
@@ -67,44 +111,6 @@ ContentTools.Tools.Subheading5 = (function(_super) {
     return Subheading5;
 
 })(ContentTools.Tools.Heading);
-
-
-/*
-* Load ContentTools
-*/
-
-var editor = ContentTools.EditorApp.get();
-editor.init('*[data-editable]', 'data-file');
-
-/*
-* Save event
-*/
-editor.addEventListener('saved', function (ev) {
-
-    this.busy(true);
-    regions = ev.detail().regions;
-
-    for (name in regions) {
-
-        if (regions.hasOwnProperty(name))
-        {
-            var component = $('*[data-file="' + name + '"]').data('component'); // check for component name
-            $.request(component, {
-                data: {
-                    file: name,
-                    content: regions[name]
-                }
-            });
-        }
-    }
-
-    new ContentTools.FlashUI('ok');
-    setTimeout(function(){
-        editor.busy(false);
-    }, 600);
-
-});
-
 
 /*
 * Image uploader

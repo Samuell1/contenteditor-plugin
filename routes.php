@@ -5,12 +5,6 @@ use Cms\Classes\ComponentPartial;
 use Cms\Classes\MediaLibrary;
 use Cms\Helpers\File as FileHelper;
 
-function checkEditor()
-{
-    $backendUser = BackendAuth::getUser();
-    return $backendUser && $backendUser->hasAccess(Settings::get('permissions', 'cms.manage_content'));
-}
-
 Route::post('/samuell/contenteditor/image/upload', function () {
 
     if (checkEditor()) {
@@ -80,3 +74,9 @@ Route::post('/samuell/contenteditor/image/save', function () {
     }
 
 });
+
+function checkEditor()
+{
+    $backendUser = BackendAuth::getUser();
+    return $backendUser && $backendUser->hasAccess(Settings::get('permissions', 'cms.manage_content'));
+}
