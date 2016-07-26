@@ -114,13 +114,14 @@ function imageUploader(dialog) {
 
     // Image upload cancel
     dialog.addEventListener('imageuploader.cancelUpload', function () {
-
+        // Stop the upload
         if (xhr) {
             xhr.upload.removeEventListener('progress', xhrProgress);
             xhr.removeEventListener('readystatechange', xhrComplete);
             xhr.abort();
         }
 
+        // Set the dialog to empty
         dialog.state('empty');
     });
 
@@ -133,102 +134,129 @@ function imageUploader(dialog) {
     // Image upload
     dialog.addEventListener('imageuploader.fileready', function (ev) {
 
+        // Upload a file to the server
         var formData;
         var file = ev.detail().file;
 
+        // Define functions to handle upload progress and completion
+        xhrProgress = function (ev) {
+            // Set the progress for the upload
+            dialog.progress((ev.loaded / ev.total) * 100);
+        }
+
+        xhrComplete = function (ev) {
+            var response;
+
+            // Check the request is complete
+            if (ev.target.readyState != 4) {
+                return;
+            }
+
+            // Clear the request
+            xhr = null
+            xhrProgress = null
+            xhrComplete = null
+
+            // Handle the result of the upload
+            if (parseInt(ev.target.status) == 200) {
+                // Unpack the response (from JSON)
+                response = JSON.parse(ev.target.responseText);
+
+                // Store the image details
+                image = {
+                    size: response.size,
+                    url: response.url
+                    };
+
+                // Populate the dialog
+                dialog.populate(image.url, image.size);
+
+            } else {
+                // The request failed, notify the user
+                new ContentTools.FlashUI('no');
+            }
+        }
+
+        // Set the dialog state to uploading and reset the progress bar to 0
         dialog.state('uploading');
         dialog.progress(0);
 
-        var formData = new FormData();
+        // Build the form data to post to the server
+        formData = new FormData();
         formData.append('image', file);
 
-        $.request("contenteditor::onUploadImage", {
-            proccessData: false,
-            contentType: false,
-            data: formData,
-            xhr: function() {
-
-                var xhr = new window.XMLHttpRequest();
-
-                xhr.upload.addEventListener("progress", function(evt) {
-                  if (evt.lengthComputable) {
-                    var percentComplete = evt.loaded / evt.total;
-                    percentComplete = parseInt(percentComplete * 100);
-                    dialog.progress(percentComplete);
-
-                    if (percentComplete === 100) {
-                      //Upload Is Complete
-                    }
-                  }
-                }, false);
-                return xhr;
-            },
-            success: function(result) {
-                var response = JSON.parse(result);
-
-                dialog.save(
-                  response.url,
-                  response.size,
-                  {
-                      'alt': response.alt,
-                      'data-ce-max-width': response.size['width']
-                  }
-                );
-
-            }
-        });
-
+        // Make the request
+        xhr = new XMLHttpRequest();
+        xhr.upload.addEventListener('progress', xhrProgress);
+        xhr.addEventListener('readystatechange', xhrComplete);
+        xhr.open('POST', '/samuell/contenteditor/image/upload', true);
+        xhr.send(formData);
     });
 
     // Image save
     dialog.addEventListener('imageuploader.save', function () {
         var crop, cropRegion, formData;
 
+        // Define a function to handle the request completion
+        xhrComplete = function (ev) {
+            // Check the request is complete
+            if (ev.target.readyState !== 4) {
+                return;
+            }
+
+            // Clear the request
+            xhr = null
+            xhrComplete = null
+
+            // Free the dialog from its busy state
+            dialog.busy(false);
+
+            // Handle the result of the rotation
+            if (parseInt(ev.target.status) === 200) {
+                // Unpack the response (from JSON)
+                var response = JSON.parse(ev.target.responseText);
+
+                // Trigger the save event against the dialog with details of the
+                // image to be inserted.
+                dialog.save(
+                    response.url,
+                    response.size,
+                    {
+                        'alt': response.alt,
+                        'width': response.size.width,
+                        'height': response.size.height,
+                        'data-ce-max-width': response.size.width,
+                    });
+
+            } else {
+                // The request failed, notify the user
+                new ContentTools.FlashUI('no');
+            }
+        }
+
+        // Set the dialog to busy while the rotate is performed
         dialog.busy(true);
 
-        var formData = new FormData();
+        console.log(image);
+
+        // Build the form data to post to the server
+        formData = new FormData();
         formData.append('url', image.url);
+
+        // Set the width of the image when it's inserted, this is a default
+        // the user will be able to resize the image afterwards.
         formData.append('width', 600);
 
-        $.request("contenteditor::onSaveImage", {
-            proccessData: false,
-            contentType: false,
-            data: formData,
-            xhr: function() {
+        // Check if a crop region has been defined by the user
+        if (dialog.cropRegion()) {
+            formData.append('crop', dialog.cropRegion());
+        }
 
-                var xhr = new window.XMLHttpRequest();
-
-                xhr.upload.addEventListener("progress", function(evt) {
-                  if (evt.lengthComputable) {
-                    var percentComplete = evt.loaded / evt.total;
-                    percentComplete = parseInt(percentComplete * 100);
-                    console.log(percentComplete);
-                    dialog.progress(percentComplete);
-
-                    if (percentComplete === 100) {
-                      //Upload Is Complete
-                    }
-                  }
-                }, false);
-                return xhr;
-            },
-            success: function(result) {
-                var response = JSON.parse(result);
-
-                dialog.save(
-                  response.url,
-                  response.size,
-                  {
-                      'alt': response.alt,
-                      'data-ce-max-width': response.size['width']
-                  }
-                );
-
-            }
-        });
-
-        xhr = null
-        xhrComplete = null
+        // Make the request
+        xhr = new XMLHttpRequest();
+        xhr.addEventListener('readystatechange', xhrComplete);
+        xhr.open('POST', '/samuell/contenteditor/image/save', true);
+        xhr.send(formData);
     });
 
 }

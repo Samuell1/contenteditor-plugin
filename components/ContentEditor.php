@@ -1,14 +1,9 @@
 <?php namespace Samuell\ContentEditor\Components;
 
-use File;
-use Str;
 use BackendAuth;
-use Response;
-use Input;
 
 use Cms\Classes\Content;
 use Cms\Classes\CmsObject;
-use Cms\Classes\MediaLibrary;
 use Cms\Classes\ComponentBase;
 
 use Samuell\ContentEditor\Models\Settings;
@@ -96,69 +91,6 @@ class ContentEditor extends ComponentBase
             ]);
             $fileContent->save();
 
-        }
-    }
-
-    public function onUploadImage()
-    {
-        if ($this->checkEditor()) {
-
-            try {
-                 if (!Input::hasFile('file')) {
-                     return;
-                 }
-                 $uploadedFile = Input::file('file');
-                 $fileName = $uploadedFile->getClientOriginalName();
-
-                 // Convert uppcare case file extensions to lower case
-                 $extension = strtolower($uploadedFile->getClientOriginalExtension());
-                 $fileName = File::name($fileName).'.'.$extension;
-
-                 // File name contains non-latin characters, attempt to slug the value
-                 if (!$this->validateFileName($fileName)) {
-                     $fileNameSlug = Str::slug(File::name($fileName), '-');
-                     $fileName = $fileNameSlug.'.'.$extension;
-                 }
-                 if (!$uploadedFile->isValid()) {
-                     throw new ApplicationException($uploadedFile->getErrorMessage());
-                 }
-
-                 $path = '/contenteditor/';
-                 $path = MediaLibrary::validatePath($path);
-
-                 MediaLibrary::instance()->put(
-                     $path.'/'.$fileName,
-                     File::get($uploadedFile->getRealPath())
-                 );
-
-                 return Response::json([
-                     "url"  => '/storage/app/media/'.$path.'/'.$fileName,
-                     "size" => ''
-                 ]);
-             }
-             catch (Exception $ex) {
-                 return $ex;
-             }
-
-        }
-    }
-
-    public function onSaveImage()
-    {
-        if ($this->checkEditor()) {
-
-            list($width, $height) = getimagesize(post('url'));
-
-            return Response::json([
-                'url'   => post('url'),
-                'width' => post('width'),
-                'crop'  => post('crop'),
-                'alt'   => "Image",
-                'size'  => [
-                            'width' => $width,
-                            'height' => $height
-                            ]
-            ]);
         }
     }
 
