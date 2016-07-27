@@ -15,12 +15,14 @@ tabs:
             tab: Main settings
             span: right
             label: Permissions
-            commentAbove: Show Content Editor only for (default = cms.manage_content)
+            commentAbove: Show Content Editor only for
+            default: 'cms.manage_content'
         image_folder:
             tab: Main settings
             span: right
             label: Image folder
-            commentAbove: Upload images in (default = contenteditor)
+            commentAbove: Upload images in MediaLibrary folder
+            default: 'contenteditor'
 
         ####
         style_palettes:
@@ -31,16 +33,14 @@ tabs:
                 fields:
                     name:
                         label: Name
-                        type: text
                         span: left
-                    class_name:
+                    class:
                         label: Class
-                        type: text
                         span: left
                     allowed_tags:
                         label: Allowed tags
-                        span: right
                         type: text
+                        span: right
         ####
         external_css:
             tab: Style palettes CSS

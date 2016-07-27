@@ -10,8 +10,6 @@ class Settings extends Model
 
     public $settingsFields = 'fields.yaml';
 
-    public $jsonable = ['style_palettes'];
-
     // list of buttons
     public function getEnabledButtonsOptions() {
         return [

@@ -8,8 +8,8 @@
 {% put scripts %}
 <script type="text/javascript">
 editor.StylePalette.add([
-    {% for style in __SELF__.style_palettes %}
-        new ContentTools.Style('{{ style.name }}', '{{ style.class_name }}', ['p']),
+    {% for style in __SELF__.palettes %}
+        new ContentTools.Style('{{ style.name }}', '{{ style.class }}', ['p']),
     {% endfor %}
 ]);
 editor.toolbox().tools([

@@ -13,6 +13,7 @@ class ContentEditor extends ComponentBase
     public $content;
     public $file;
     public $buttons;
+    public $palettes;
 
     public function componentDetails()
     {
@@ -44,7 +45,7 @@ class ContentEditor extends ComponentBase
         if ($this->checkEditor()) {
 
             $this->buttons = Settings::get('enabled_buttons');
-            $this->style_palettes = Settings::get('style_palettes');
+            $this->palettes = Settings::get('style_palettes');
 
             // put content tools js + css
             $this->addCss('assets/content-tools.min.css');
