@@ -35,14 +35,6 @@ editor.addEventListener('saved', function (ev) {
 });
 
 /*
-* Style Palettes
-*/
-ContentTools.StylePalette.add([
-    new ContentTools.Style('Float left', 'float-left', ['img', 'p']),
-    new ContentTools.Style('Float right', 'float-right', ['img', 'p']),
-]);
-
-/*
 * Predefined tools
 */
 var __hasProp = {}.hasOwnProperty;

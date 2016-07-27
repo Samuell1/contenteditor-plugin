@@ -7,6 +7,11 @@
 
 {% put scripts %}
 <script type="text/javascript">
+editor.StylePalette.add([
+    {% for style in __SELF__.style_palettes %}
+        new ContentTools.Style('{{ style.name }}', '{{ style.class_name }}', ['p']),
+    {% endfor %}
+]);
 editor.toolbox().tools([
                             [
                             {% for value in __SELF__.buttons %}

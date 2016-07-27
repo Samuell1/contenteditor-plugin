@@ -37,7 +37,6 @@ class Plugin extends PluginBase
               'settings' => [
                   'label'       => 'Content Editor Settings',
                   'description' => 'Manage main editor settings.',
-                  'category'    => 'Misc',
                   'icon'        => 'icon-cog',
                   'class'       => 'Samuell\ContentEditor\Models\Settings',
                   'order'       => 500,

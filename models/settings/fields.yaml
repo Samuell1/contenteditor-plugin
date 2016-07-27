@@ -31,13 +31,16 @@ tabs:
                 fields:
                     name:
                         label: Name
+                        type: text
                         span: left
-                    class:
+                    class_name:
                         label: Class
+                        type: text
                         span: left
                     allowed_tags:
-                        label: Allowed tags (separated by commas - 'p','img',...)
+                        label: Allowed tags
                         span: right
+                        type: text
         ####
         external_css:
             tab: Style palettes CSS
