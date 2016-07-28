@@ -1,5 +1,7 @@
 <?php namespace Samuell\ContentEditor;
 
+use App;
+use Event;
 use Backend;
 use System\Classes\PluginBase;
 
@@ -43,5 +45,15 @@ class Plugin extends PluginBase
                   'permissions' => ['samuell.contenteditor.access_settings']
               ]
           ];
+      }
+
+      public function boot()
+      {
+          // add 4 span for inputs
+          if (App::runningInBackend()) {
+              Event::listen('backend.page.beforeDisplay', function($controller, $action, $params) {
+                  $controller->addCss('/plugins/samuell/contenteditor/assets/backend-4span.css');
+              });
+          }
       }
 }

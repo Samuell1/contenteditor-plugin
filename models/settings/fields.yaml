@@ -33,14 +33,15 @@ tabs:
                 fields:
                     name:
                         label: Name
-                        span: left
+                        span: left1
                     class:
                         label: Class
-                        span: left
+                        span: left2
                     allowed_tags:
                         label: Allowed tags
-                        type: text
+                        type: taglist
                         span: right
+                        options: true
         ####
         external_css:
             tab: Style palettes CSS

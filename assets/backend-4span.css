@@ -1,0 +1,22 @@
+.form-group.span-left1 {
+    float: left;
+    width: 22.75%;
+    clear: left;
+    margin-right: 1.5%;
+}
+.form-group.span-left2 {
+    float: left;
+    width: 22.75%;
+    margin-left: 1.5%;
+}
+.form-group.span-right1 {
+    float: left;
+    width: 22.75%;
+    margin-left: 3%;
+}
+.form-group.span-right2 {
+    float: right;
+    width: 22.75%;
+    margin-left: 1.5%;
+    clear: right;
+}
