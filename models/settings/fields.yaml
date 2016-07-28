@@ -37,11 +37,13 @@ tabs:
                     class:
                         label: Class
                         span: left2
-                    allowed_tags:
-                        label: Allowed tags
-                        type: taglist
-                        span: right
-                        options: true
+                    # TODO: fix taglist :(
+                    # allowed_tags:
+                    #     mode: array
+                    #     label: Allowed tags
+                    #     type: taglist
+                    #     span: right
+                    #     options: true
         ####
         external_css:
             tab: Style palettes CSS

@@ -7,7 +7,7 @@
 
 {% put scripts %}
 <script type="text/javascript">
-editor.StylePalette.add([
+ContentTools.StylePalette.add([
     {% for style in __SELF__.palettes %}
         new ContentTools.Style('{{ style.name }}', '{{ style.class }}', ['p']),
     {% endfor %}
