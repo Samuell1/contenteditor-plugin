@@ -9,7 +9,7 @@
 <script type="text/javascript">
 ContentTools.StylePalette.add([
     {% for style in __SELF__.palettes %}
-        new ContentTools.Style('{{ style.name }}', '{{ style.class }}', ['p']),
+        new ContentTools.Style('{{ style.name }}', '{{ style.class }}', ['p','img','div']),
     {% endfor %}
 ]);
 editor.toolbox().tools([
