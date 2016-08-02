@@ -11,6 +11,7 @@ tabs:
             span: left
             label: Buttons
             type: checkboxlist
+
         permissions:
             tab: Main settings
             span: right
@@ -41,6 +42,7 @@ tabs:
                         label: Allowed tags
                         type: taglist
                         span: right
+                        mode: array
                         options: true
         ####
         # TODO: later :-)

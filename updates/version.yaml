@@ -5,4 +5,3 @@
     - Autocreate file if not exists
     - Get actual component name to request
     - Settings in backend
-    - create_settings_table.php

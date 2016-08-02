@@ -48,7 +48,7 @@ class ContentEditor extends ComponentBase
             $this->palettes = Settings::get('style_palettes');
 
             // put content tools js + css
-            $this->addCss('assets/content-tools.min.css');
+            $this->addCss('assets/content-tools.css');
             $this->addJs('assets/content-tools.min.js');
             $this->addJs('assets/contenteditor.js');
         }
