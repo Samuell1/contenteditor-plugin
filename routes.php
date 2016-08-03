@@ -41,7 +41,7 @@ Route::post('/samuell/contenteditor/image/upload', function () {
 
              return Response::json([
                  'url'      => '/storage/app/media'.$path.'/'.$fileName,
-                 'filename' => $fileNameSlug,
+                 'filename' => $fileName,
                  'size'     => [
                                 $width,
                                 $height
