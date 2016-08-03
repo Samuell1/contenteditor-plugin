@@ -1760,7 +1760,7 @@
 }
 
 /* Right align */
-[data-editable].align-right {
+[data-editable] .align-right {
     clear: initial;
     float: right;
     margin-left: 0.5em;
