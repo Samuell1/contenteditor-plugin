@@ -11,8 +11,9 @@ Route::post('/samuell/contenteditor/image/upload', function () {
 
         try {
              if (!Input::hasFile('image')) {
-                 return;
+                 throw new ApplicationException('File missing from request');
              }
+
              $uploadedFile = Input::file('image');
              $fileName = $uploadedFile->getClientOriginalName();
 

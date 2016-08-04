@@ -60,16 +60,21 @@ class ContentEditor extends ComponentBase
         $this->file = $this->property('file');
 
         // Compatability with RainLab.Translate
-        if (class_exists('\RainLab\Translate\Classes\Translator')){
+        if (class_exists('\RainLab\Translate\Classes\Translator')) {
             $locale = \RainLab\Translate\Classes\Translator::instance()->getLocale();
             $fileName = substr_replace($this->file, '.'.$locale, strrpos($this->file, '.'), 0);
             if (($content = Content::loadCached($this->page->controller->getTheme(), $fileName)) !== null)
                 $this->file = $fileName;
         }
 
-        if ($this->checkEditor()){
-            if (Content::load($this->getTheme(), $this->file))
+        if ($this->checkEditor()) {
+
+            if (Content::load($this->getTheme(), $this->file)){
                 $this->content = $this->renderContent($this->file);
+            } else {
+                $this->content = '';
+            }
+
         } else {
             return $this->renderContent($this->file);
         }
@@ -77,13 +82,13 @@ class ContentEditor extends ComponentBase
 
     public function onSave()
     {
-        if ($this->checkEditor()){
+        if ($this->checkEditor()) {
 
             $fileName = post('file');
 
             if ($load = Content::load($this->getTheme(), $fileName)) {
                 $fileContent = $load; // load existed content file
-            }else{
+            } else {
                 $fileContent = Content::inTheme($this->getTheme()); // create new content file if not exists
             }
 

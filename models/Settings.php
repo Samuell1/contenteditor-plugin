@@ -43,6 +43,7 @@ class Settings extends Model
         ];
     }
 
+    // list of allowed tags
     public function getAllowedTagsOptions() {
         return [
             'p',
