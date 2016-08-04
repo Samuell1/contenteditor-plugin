@@ -16,7 +16,5 @@ return [
         'name'                 => 'Name',
         'class'                => 'Class',
         'allowed_tags'         => 'Allowed tags',
-        ''                     => '',
-
     ]
 ];
