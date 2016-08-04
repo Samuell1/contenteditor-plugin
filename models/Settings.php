@@ -1,5 +1,6 @@
 <?php namespace Samuell\ContentEditor\Models;
 
+use Lang;
 use Model;
 
 class Settings extends Model
@@ -13,33 +14,33 @@ class Settings extends Model
     // list of buttons
     public function getEnabledButtonsOptions() {
         return [
-            'bold'           => 'bold',
-            'italic'         => 'italic',
-            'link'           => 'link',
+            'bold'           => 'Bold (b)',
+            'italic'         => 'Italic (i)',
+            'link'           => 'Link (a)',
 
-            'align-left'     => 'align-left',
-            'align-center'   => 'align-center',
-            'align-right'    => 'align-right',
+            'align-left'     => 'Align left',
+            'align-center'   => 'Align center',
+            'align-right'    => 'Align right',
 
-            'heading'        => 'heading (h1)',
-            'subheading'     => 'subheading (h2)',
+            'heading'        => 'Heading (h1)',
+            'subheading'     => 'Subheading (h2)',
 
-            'subheading3'    => 'subheading3 (h3)',
-            'subheading4'    => 'subheading4 (h4)',
-            'subheading5'    => 'subheading5 (h5)',
+            'subheading3'    => 'Subheading3 (h3)',
+            'subheading4'    => 'Subheading4 (h4)',
+            'subheading5'    => 'Subheading5 (h5)',
 
-            'paragraph'      => 'paragraph',
-            'unordered-list' => 'unordered-list',
-            'ordered-list'   => 'ordered-list',
+            'paragraph'      => 'Paragraph (p)',
+            'unordered-list' => 'Unordered list (ul)',
+            'ordered-list'   => 'Ordered list (ol)',
 
-            'table'          => 'table',
-            'indent'         => 'indent',
-            'unindent'       => 'unindent',
-            'line-break'     => 'line-break',
+            'table'          => 'Table',
+            'indent'         => 'Indent',
+            'unindent'       => 'Unindent',
+            'line-break'     => 'Line-break (br)',
 
-            'image'          => 'image',
-            'video'          => 'video',
-            'preformatted'   => 'preformatted',
+            'image'          => 'Image upload',
+            'video'          => 'Video',
+            'preformatted'   => 'Preformatted (pre)',
         ];
     }
 

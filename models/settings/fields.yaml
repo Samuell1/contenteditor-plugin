@@ -7,43 +7,42 @@ tabs:
 
         ####
         enabled_buttons:
-            tab: Main settings
+            tab: samuell.contenteditor::lang.settings.main_settings
             span: left
-            label: Buttons
+            label: samuell.contenteditor::lang.settings.main_settings
             type: checkboxlist
-
         permissions:
-            tab: Main settings
+            tab: samuell.contenteditor::lang.settings.main_settings
             span: right
-            label: Permissions
-            commentAbove: Show Content Editor only for
+            label: samuell.contenteditor::lang.settings.permissions
+            commentAbove: samuell.contenteditor::lang.settings.permissions_comment
             default: 'cms.manage_content'
         image_folder:
-            tab: Main settings
+            tab: samuell.contenteditor::lang.settings.main_settings
             span: right
-            label: Image folder
-            commentAbove: Upload images in MediaLibrary folder
+            label: samuell.contenteditor::lang.settings.image_folder
+            commentAbove: samuell.contenteditor::lang.settings.image_folder_comment
             default: 'contenteditor'
 
         ####
         style_palettes:
-            tab: Style palettes
-            label: Style palettes
+            tab: samuell.contenteditor::lang.settings.style_palettes
+            label: samuell.contenteditor::lang.settings.style_palettes
             type: repeater
             form:
                 fields:
                     name:
-                        label: Name
-                        span: left1
+                        label: samuell.contenteditor::lang.settings.name
+                        span: left
                     class:
-                        label: Class
-                        span: left2
-                    allowed_tags:
-                        label: Allowed tags
-                        type: taglist
+                        label: samuell.contenteditor::lang.settings.class
                         span: right
+                    allowed_tags:
+                        label: samuell.contenteditor::lang.settings.allowed_tags
+                        type: taglist
                         mode: array
                         options: true
+
         ####
         # TODO: later :-)
         # external_css:

@@ -46,14 +46,4 @@ class Plugin extends PluginBase
               ]
           ];
       }
-
-      public function boot()
-      {
-          // add 4 span for inputs
-          if (App::runningInBackend()) {
-              Event::listen('backend.page.beforeDisplay', function($controller, $action, $params) {
-                  $controller->addCss('/plugins/samuell/contenteditor/assets/backend-4span.css');
-              });
-          }
-      }
 }
