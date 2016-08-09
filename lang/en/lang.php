@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'app' => [
+    'plugin' => [
         'name'    => 'Content Editor',
-        'tagline' => 'Front-end content editor'
+        'description' => 'Front-end content editor'
     ],
     'settings' => [
         'main_settings'        => 'Main settings',
