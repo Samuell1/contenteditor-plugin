@@ -1,3 +1,5 @@
+# <img src="http://octobercms.com/storage/app/uploads/public/579/a5b/cc1/thumb_5108_64x64_0_0_auto.png" width="60px" align="center" alt="Electron API Demos icon"> Content Editor for OctoberCMS
+
 Edit content from front-end.
 
 http://octobercms.com/plugin/samuell-contenteditor
