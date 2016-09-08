@@ -1,4 +1,4 @@
-/*! ContentTools v1.2.9 by Anthony Blackshaw <ant@getme.co.uk> (https://github.com/anthonyjb) */
+/*! ContentTools v1.2.11 by Anthony Blackshaw <ant@getme.co.uk> (https://github.com/anthonyjb) */
 
 .ce--dragging,
 .ce--resizing {
@@ -578,7 +578,7 @@
 .ct-widget .ct-control--icon:after {
     background: #000;
     color: #fff;
-    content: attr(data-tooltip);
+    content: attr(data-ct-tooltip);
     display: block;
     -webkit-hyphens: auto;
     -ms-hyphens: auto;
@@ -844,17 +844,18 @@
     font-size: 0;
     height: 34px;
     left: 0;
-    margin-left: -144px;
+    margin-left: -160px;
     margin-top: -48px;
     position: absolute;
     top: 0;
+    width: 320px;
     z-index: 10099
 }
 .ct-widget.ct-anchored-dialog:after {
     border: 16px solid hsla(0, 0%, 100%, 0);
     border-top-color: #27ae60;
     content: '';
-    left: 128px;
+    left: 144px;
     position: absolute;
     top: 34px
 }
@@ -1540,7 +1541,7 @@
 .ct-widget .ct-tool:after {
     background: #000;
     color: #fff;
-    content: attr(data-tooltip);
+    content: attr(data-ct-tooltip);
     display: block;
     -webkit-hyphens: auto;
     -ms-hyphens: auto;
@@ -1609,19 +1610,6 @@
 .ct-widget .ct-tool--subheading:before {
     content: "H"
 }
-.ct-widget .ct-tool--subheading3:before {
-    content: "H";
-    font-size: 15px;
-}
-.ct-widget .ct-tool--subheading4:before {
-    content: "H";
-    font-size: 12px;
-}
-.ct-widget .ct-tool--subheading5:before {
-    content: "H";
-    font-size: 10px;
-}
-
 .ct-widget .ct-tool--paragraph:before {
     content: "P"
 }
@@ -1736,6 +1724,20 @@
 }
 .ct--puesdo-select {
     background: rgba(0, 0, 0, .1)
+}
+
+/* Added css */
+.ct-widget .ct-tool--subheading3:before {
+    content: "H";
+    font-size: 15px;
+}
+.ct-widget .ct-tool--subheading4:before {
+    content: "H";
+    font-size: 12px;
+}
+.ct-widget .ct-tool--subheading5:before {
+    content: "H";
+    font-size: 10px;
 }
 
 /* Alignment styles for images, videos and iframes in editable regions */
