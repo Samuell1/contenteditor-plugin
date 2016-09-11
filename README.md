@@ -4,6 +4,8 @@ Edit content from front-end.
 
 http://octobercms.com/plugin/samuell-contenteditor
 
+<img src="http://octobercms.com/storage/app/uploads/public/572/dfc/ec4/572dfcec4d675487425233.png">
+
 ### How to use it? It's simple. ###
 
 * Drop the Content Editor component to a CMS page.
