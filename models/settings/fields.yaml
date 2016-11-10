@@ -29,6 +29,7 @@ tabs:
             tab: samuell.contenteditor::lang.settings.style_palettes
             label: samuell.contenteditor::lang.settings.style_palettes
             type: repeater
+            mode: array
             form:
                 fields:
                     name:
@@ -39,9 +40,10 @@ tabs:
                         span: right
                     allowed_tags:
                         label: samuell.contenteditor::lang.settings.allowed_tags
-                        type: taglist
-                        mode: array
-                        options: true
+                        default: "['p','div','img']"
+                        # type: taglist
+                        # mode: array
+                        # options: true
 
         ####
         # TODO: later :-)
