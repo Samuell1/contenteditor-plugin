@@ -1,0 +1,52 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+tabs:
+    fields:
+
+        ####
+        enabled_buttons:
+            tab: samuell.contenteditor::lang.settings.main_settings
+            span: left
+            label: samuell.contenteditor::lang.settings.main_settings
+            type: checkboxlist
+        permissions:
+            tab: samuell.contenteditor::lang.settings.main_settings
+            span: right
+            label: samuell.contenteditor::lang.settings.permissions
+            commentAbove: samuell.contenteditor::lang.settings.permissions_comment
+            default: 'cms.manage_content'
+        image_folder:
+            tab: samuell.contenteditor::lang.settings.main_settings
+            span: right
+            label: samuell.contenteditor::lang.settings.image_folder
+            commentAbove: samuell.contenteditor::lang.settings.image_folder_comment
+            default: 'contenteditor'
+
+        ####
+        style_palettes:
+            tab: samuell.contenteditor::lang.settings.style_palettes
+            label: samuell.contenteditor::lang.settings.style_palettes
+            type: repeater
+            form:
+                fields:
+                    name:
+                        label: samuell.contenteditor::lang.settings.name
+                        span: left
+                    class:
+                        label: samuell.contenteditor::lang.settings.class
+                        span: right
+                    allowed_tags:
+                        label: samuell.contenteditor::lang.settings.allowed_tags
+                        type: taglist
+                        mode: array
+                        options: true
+
+        ####
+        # TODO: later :-)
+        # external_css:
+        #     tab: Style palettes CSS
+        #     type: codeeditor
+        #     size: huge
+        #     language: css

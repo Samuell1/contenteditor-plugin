@@ -1,5 +1,7 @@
 <?php namespace Samuell\ContentEditor;
 
+use App;
+use Event;
 use Backend;
 use System\Classes\PluginBase;
 
@@ -17,16 +19,31 @@ class Plugin extends PluginBase
       public function pluginDetails()
       {
          return [
-             'name'        => 'ContentEditor',
-             'description' => 'Frontend content editor',
+             'name'        => 'Content Editor',
+             'description' => 'Front-end content editor',
              'author'      => 'Samuell',
              'icon'        => 'icon-edit'
          ];
       }
+
       public function registerComponents()
       {
          return [
              'Samuell\ContentEditor\Components\ContentEditor' => 'contenteditor',
          ];
+      }
+
+      public function registerSettings()
+      {
+          return [
+              'settings' => [
+                  'label'       => 'Content Editor Settings',
+                  'description' => 'Manage main editor settings.',
+                  'icon'        => 'icon-cog',
+                  'class'       => 'Samuell\ContentEditor\Models\Settings',
+                  'order'       => 500,
+                  'permissions' => ['samuell.contenteditor.access_settings']
+              ]
+          ];
       }
 }

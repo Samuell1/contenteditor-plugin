@@ -1,5 +1,28 @@
 <div
     data-editable
+    data-component="{{ __SELF__ }}::onSave"
     data-file="{{ __SELF__.file }}">
     {{ __SELF__.content|raw }}
 </div>
+
+{% put scripts %}
+<script type="text/javascript">
+ContentTools.StylePalette.add([
+    {% for style in __SELF__.palettes %}
+        new ContentTools.Style('{{ style.name }}', '{{ style.class }}', ['p','img','div']),
+    {% endfor %}
+]);
+editor.toolbox().tools([
+                            [
+                            {% for value in __SELF__.buttons %}
+                                '{{ value }}',
+                            {% endfor %}
+                             ],
+                             [
+                                'undo',
+                                'redo',
+                                'remove'
+                            ]
+                        ]);
+</script>
+{% endput %}
