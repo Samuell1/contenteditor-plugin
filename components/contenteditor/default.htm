@@ -7,9 +7,10 @@
 
 {% put scripts %}
 <script type="text/javascript">
+/* CONTENT EDITOR SCRIPT START */
 ContentTools.StylePalette.add([
     {% for style in __SELF__.palettes %}
-        new ContentTools.Style('{{ style.name }}', '{{ style.class }}', {{ style.allowed_tags }}),
+        new ContentTools.Style('{{ style.name ? style.name : style.class }}', '{{ style.class }}', {{ style.allowed_tags|json_encode()|raw }}),
     {% endfor %}
 ]);
 editor.toolbox().tools([
@@ -24,5 +25,6 @@ editor.toolbox().tools([
                                 'remove'
                             ]
                         ]);
+/* CONTENT EDITOR SCRIPT END */
 </script>
 {% endput %}

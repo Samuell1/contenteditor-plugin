@@ -41,9 +41,9 @@ tabs:
                     allowed_tags:
                         label: samuell.contenteditor::lang.settings.allowed_tags
                         default: "['p','div','img']"
-                        # type: taglist
-                        # mode: array
-                        # options: true
+                        type: taglist
+                        mode: array
+                        options: true
 
         ####
         # TODO: later :-)
