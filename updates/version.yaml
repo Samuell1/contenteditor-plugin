@@ -5,3 +5,6 @@
     - Autocreate file if not exists
     - Get actual component name to request
     - Settings in backend
+1.0.4:
+    - Enabled taglist input for selecting tags
+    - Fixed some bugs
