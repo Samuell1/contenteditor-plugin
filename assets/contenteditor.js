@@ -37,12 +37,10 @@ editor.addEventListener('saved', function (ev) {
 /*
 * Fixture focus
 */
-FIXTURE_TOOLS = [['undo', 'redo', 'remove']];
 ContentEdit.Root.get().bind('focus', function(element) {
-    console.log(element)
     var tools;
     if (element.isFixed()) {
-        tools = FIXTURE_TOOLS;
+        tools = [['undo', 'redo', 'remove']];
     } else {
         tools = ContentTools.DEFAULT_TOOLS;
     }
