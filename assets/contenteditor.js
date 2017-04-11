@@ -3,7 +3,7 @@
 */
 
 var editor = ContentTools.EditorApp.get();
-editor.init('*[data-editable]', 'data-file');
+editor.init('[data-editable], [data-fixture]', 'data-file');
 
 /*
 * Save event
@@ -33,6 +33,32 @@ editor.addEventListener('saved', function (ev) {
     }, 600);
 
 });
+
+/*
+* Fixture focus
+*/
+FIXTURE_TOOLS = [['undo', 'redo', 'remove']];
+ContentEdit.Root.get().bind('focus', function(element) {
+    console.log(element)
+    var tools;
+    if (element.isFixed()) {
+        tools = FIXTURE_TOOLS;
+    } else {
+        tools = ContentTools.DEFAULT_TOOLS;
+    }
+    if (editor.toolbox().tools() !== tools) {
+        return editor.toolbox().tools(tools);
+    }
+});
+
+/*
+* Disable drag for attribute "data-no-drag"
+*/
+// ContentEdit.Root.get().bind('mount', function (element) {
+//     if (element.hasAttr('data-no-drag')) {
+//         element.can('drag', false);
+//     }
+// });
 
 /*
 * Predefined tools
@@ -131,7 +157,7 @@ function imageUploader(dialog) {
 
     // Image upload
     dialog.addEventListener('imageuploader.fileready', function (ev) {
-
+        console.log(ev)
         // Upload a file to the server
         var formData;
         var file = ev.detail().file;

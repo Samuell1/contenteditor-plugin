@@ -1,9 +1,9 @@
-<div
-    data-editable
+<{% if __SELF__.fixture %}{{ __SELF__.fixture }}{% else %}div{% endif %}
+    {% if __SELF__.fixture %}data-fixture{% else %}data-editable{% endif %}
     data-component="{{ __SELF__ }}::onSave"
     data-file="{{ __SELF__.file }}">
     {{ __SELF__.content|raw }}
-</div>
+</{% if __SELF__.fixture %}{{ __SELF__.fixture }}{% else %}div{% endif %}>
 
 {% put scripts %}
 <script type="text/javascript">

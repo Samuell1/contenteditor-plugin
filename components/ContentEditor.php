@@ -12,6 +12,7 @@ class ContentEditor extends ComponentBase
 {
     public $content;
     public $file;
+    public $fixture;
     public $buttons;
     public $palettes;
 
@@ -31,6 +32,10 @@ class ContentEditor extends ComponentBase
                 'description' => 'Content block filename to edit, optional',
                 'default'     => '',
                 'type'        => 'dropdown',
+            ],
+            'fixture' => [
+                'title'       => 'Content block tag with disabled toolbox',
+                'description' => 'Fixed name for content block, useful for inline texts (headers, spans...)',
             ]
         ];
     }
@@ -58,6 +63,7 @@ class ContentEditor extends ComponentBase
     {
 
         $this->file = $this->property('file');
+        $this->fixture = $this->property('fixture');
 
         // Compatability with RainLab.Translate
         if (class_exists('\RainLab\Translate\Classes\Translator')) {
