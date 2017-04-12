@@ -155,7 +155,7 @@ function imageUploader(dialog) {
 
     // Image upload
     dialog.addEventListener('imageuploader.fileready', function (ev) {
-        console.log(ev)
+
         // Upload a file to the server
         var formData;
         var file = ev.detail().file;
