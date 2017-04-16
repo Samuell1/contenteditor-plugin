@@ -8,3 +8,7 @@
 1.0.4:
     - Enabled taglist input for selecting tags
     - Fixed some bugs
+1.0.5:
+    - Added fixture option
+    - Added tools option
+    - Added Slovak translation
