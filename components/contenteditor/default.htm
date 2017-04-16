@@ -1,7 +1,8 @@
 <{% if __SELF__.fixture %}{{ __SELF__.fixture }}{% else %}div{% endif %}
     {% if __SELF__.fixture %}data-fixture{% else %}data-editable{% endif %}
     data-component="{{ __SELF__ }}::onSave"
-    data-file="{{ __SELF__.file }}">
+    data-file="{{ __SELF__.file }}"
+    data-tools="{{ __SELF__.tools }}">
     {{ __SELF__.content|raw }}
 </{% if __SELF__.fixture %}{{ __SELF__.fixture }}{% else %}div{% endif %}>
 

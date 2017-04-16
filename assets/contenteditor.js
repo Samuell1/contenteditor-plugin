@@ -38,25 +38,11 @@ editor.addEventListener('saved', function (ev) {
 * Fixture focus
 */
 ContentEdit.Root.get().bind('focus', function(element) {
-    var tools;
-    if (element.isFixed()) {
-        tools = [['undo', 'redo', 'remove']];
-    } else {
-        tools = ContentTools.DEFAULT_TOOLS;
-    }
-    if (editor.toolbox().tools() !== tools) {
-        return editor.toolbox().tools(tools);
-    }
+    var dataTools = element._parent._domElement.dataset.tools
+    var tools = (dataTools === '*' ? ContentTools.DEFAULT_TOOLS : [element._parent._domElement.dataset.tools.split(',')]);
+    if (element.isFixed()) tools = dataTools !== '*' ? tools : [['undo', 'redo', 'remove']];
+    if (editor.toolbox().tools() !== tools) editor.toolbox().tools(tools);
 });
-
-/*
-* Disable drag for attribute "data-no-drag"
-*/
-// ContentEdit.Root.get().bind('mount', function (element) {
-//     if (element.hasAttr('data-no-drag')) {
-//         element.can('drag', false);
-//     }
-// });
 
 /*
 * Predefined tools
