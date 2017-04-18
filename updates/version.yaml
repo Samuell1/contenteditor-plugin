@@ -12,3 +12,4 @@
     - Added fixture property
     - Added tools property
     - Added Slovak translation
+1.0.6: Fix for autocreating files for translation
