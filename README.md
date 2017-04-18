@@ -6,14 +6,50 @@ http://octobercms.com/plugin/samuell-contenteditor
 
 <img src="http://octobercms.com/storage/app/uploads/public/572/dfc/ec4/572dfcec4d675487425233.png">
 
-### How to use it? It's simple. ###
+### How to use it? It`s simple.
 
 * Drop the Content Editor component to a CMS page.
 * Check if you have `{% framework %}` and `{% scripts %}` inside layout for working ajax requests
 * Use this code in your page code and link the editor to a content file or set name to autocreate new file
 
+*Simple example:*
 ```
 {% component 'contenteditor' file="filename_in_content.htm" %}
 ```
+
+##### Properties
+
+* file - Content block filename to edit, optional. If doesnt exists it will autocreate
+* fixture - Fixed name for content block, useful for inline texts (headers, spans...)
+* tools - List of enabled tools, comma separated (for all use *)
+
+*Example:*
+```
+{% component 'contenteditor' file="filename_in_content.htm" fixture="h3" tools="bold,italic" %}
+```
+
+##### Tools list
+
+* `bold`           => Bold (b)
+* `italic`         => Italic (i)
+* `link`           => Link (a)
+* `align-left`     => Align left
+* `align-center`   => Align center
+* `align-right`    => Align right
+* `heading`        => Heading (h1)
+* `subheading`     => Subheading (h2)
+* `subheading3`    => Subheading3 (h3)
+* `subheading4`    => Subheading4 (h4)
+* `subheading5`    => Subheading5 (h5)
+* `paragraph`      => Paragraph (p)
+* `unordered-list` => Unordered list (ul)
+* `ordered-list`   => Ordered list (ol)
+* `table`          => Table
+* `indent`         => Indent
+* `unindent`       => Unindent
+* `line-break`     => Line-break (br)
+* `image`          => Image upload
+* `video`          => Video
+* `preformatted`   => Preformatted (pre)
 
 *Inspired by [Editable plugin](http://octobercms.com/plugin/rainlab-editable) and using Content tools editor  http://getcontenttools.com.*

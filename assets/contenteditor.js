@@ -3,7 +3,7 @@
 */
 
 var editor = ContentTools.EditorApp.get();
-editor.init('*[data-editable]', 'data-file');
+editor.init('[data-editable], [data-fixture]', 'data-file');
 
 /*
 * Save event
@@ -32,6 +32,16 @@ editor.addEventListener('saved', function (ev) {
         editor.busy(false);
     }, 600);
 
+});
+
+/*
+* Fixture focus
+*/
+ContentEdit.Root.get().bind('focus', function(element) {
+    var dataTools = element._parent._domElement.dataset.tools
+    var tools = (dataTools === '*' ? ContentTools.DEFAULT_TOOLS : [element._parent._domElement.dataset.tools.split(',')]);
+    if (element.isFixed()) tools = dataTools !== '*' ? tools : [['undo', 'redo', 'remove']];
+    if (editor.toolbox().tools() !== tools) editor.toolbox().tools(tools);
 });
 
 /*
