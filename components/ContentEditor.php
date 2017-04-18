@@ -76,8 +76,8 @@ class ContentEditor extends ComponentBase
         if (class_exists('\RainLab\Translate\Classes\Translator')) {
             $locale = \RainLab\Translate\Classes\Translator::instance()->getLocale();
             $fileName = substr_replace($this->file, '.'.$locale, strrpos($this->file, '.'), 0);
-            if (($content = Content::loadCached($this->page->controller->getTheme(), $fileName)) !== null)
-                $this->file = $fileName;
+            // if (($content = Content::loadCached($this->page->controller->getTheme(), $fileName)) !== null)
+            $this->file = $fileName;
         }
 
         if ($this->checkEditor()) {
