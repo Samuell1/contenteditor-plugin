@@ -67,18 +67,9 @@ class ContentEditor extends ComponentBase
 
     public function onRender()
     {
-
-        $this->file = $this->property('file');
+        $this->file = $this->setFile($this->property('file'));
         $this->fixture = $this->property('fixture');
         $this->tools = $this->property('tools');
-
-        // Compatability with RainLab.Translate
-        if (class_exists('\RainLab\Translate\Classes\Translator')) {
-            $locale = \RainLab\Translate\Classes\Translator::instance()->getLocale();
-            $fileName = substr_replace($this->file, '.'.$locale, strrpos($this->file, '.'), 0);
-            // if (($content = Content::loadCached($this->page->controller->getTheme(), $fileName)) !== null)
-            $this->file = $fileName;
-        }
 
         if ($this->checkEditor()) {
 
@@ -109,14 +100,49 @@ class ContentEditor extends ComponentBase
                 'fileName' => $fileName,
                 'markup' => post('content')
             ]);
-            $fileContent->save();
 
+            $fileContent->save();
         }
+    }
+
+    public function setFile($file)
+    {
+        // Compatability with RainLab.Translate
+        if ($this->translateExists()) {
+            return $this->setTranslateFile($file);
+        }
+
+        return $file;
+    }
+
+    public function setTranslateFile($file)
+    {
+        $translate = \RainLab\Translate\Classes\Translator::instance();
+        $defaultLocale = $translate->getDefaultLocale();
+        $locale = $translate->getLocale();
+
+        // Compability with Rainlab.StaticPage
+        // StaticPages content does not append default locale to file.
+        if ($this->isStaticPage() && $locale === $defaultLocale) {
+          return $file;
+        }
+
+        return substr_replace($file, '.'.$locale, strrpos($file, '.'), 0);
     }
 
     public function checkEditor()
     {
         $backendUser = BackendAuth::getUser();
         return $backendUser && $backendUser->hasAccess(Settings::get('permissions', 'cms.manage_content'));
+    }
+
+    public function translateExists()
+    {
+        return class_exists('\RainLab\Translate\Classes\Translator');
+    }
+
+    public function isStaticPage()
+    {
+        return isset($this->getPage()->apiBag['staticPage']);
     }
 }
