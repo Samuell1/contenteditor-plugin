@@ -41,7 +41,7 @@ class ContentEditor extends ComponentBase
             'tools' => [
                 'title'       => 'List of enabled tools',
                 'description' => 'List of enabled tools for selected content (for all use *)',
-                'default'     => '*',
+                'default'     => 'default',
             ]
         ];
     }
