@@ -85,11 +85,15 @@ class ContentEditor extends ComponentBase
             if (Content::load($this->getTheme(), $this->file)){
                 $this->content = $this->renderContent($this->file);
             } else {
-                $this->content = '';
+                $this->content = $this->renderContent($this->property('file'));
             }
 
         } else {
-            return $this->renderContent($this->file);
+            if (Content::load($this->getTheme(), $this->file)){
+                return $this->renderContent($this->file);
+            } else {
+                return $this->renderContent($this->property('file'));
+            }
         }
     }
 
