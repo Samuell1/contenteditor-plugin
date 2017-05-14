@@ -1,7 +1,7 @@
 <?php namespace Samuell\ContentEditor\Components;
 
+use File;
 use BackendAuth;
-
 use Cms\Classes\Content;
 use Cms\Classes\CmsObject;
 use Cms\Classes\ComponentBase;
@@ -123,7 +123,7 @@ class ContentEditor extends ComponentBase
 
         // Compability with Rainlab.StaticPage
         // StaticPages content does not append default locale to file.
-        if ($this->isStaticPage() && $locale === $defaultLocale) {
+        if ($this->fileExists($file) && $locale === $defaultLocale) {
           return $file;
         }
 
@@ -136,13 +136,12 @@ class ContentEditor extends ComponentBase
         return $backendUser && $backendUser->hasAccess(Settings::get('permissions', 'cms.manage_content'));
     }
 
+    public function fileExists($file) {
+        return File::exists((new Content)->getFilePath($file));
+    }
+
     public function translateExists()
     {
         return class_exists('\RainLab\Translate\Classes\Translator');
-    }
-
-    public function isStaticPage()
-    {
-        return isset($this->getPage()->apiBag['staticPage']);
     }
 }
