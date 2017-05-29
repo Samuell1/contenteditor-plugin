@@ -41,7 +41,7 @@ class ContentEditor extends ComponentBase
             'tools' => [
                 'title'       => 'List of enabled tools',
                 'description' => 'List of enabled tools for selected content (for all use *)',
-                'default'     => '*',
+                'default'     => '',
             ]
         ];
     }
@@ -72,15 +72,18 @@ class ContentEditor extends ComponentBase
         $this->tools = $this->property('tools');
 
         if ($this->checkEditor()) {
-
+            // if no locale file exists -> render the default, without language suffix
             if (Content::load($this->getTheme(), $this->file)){
                 $this->content = $this->renderContent($this->file);
             } else {
-                $this->content = '';
+                $this->content = $this->renderContent($this->property('file'));
             }
-
         } else {
-            return $this->renderContent($this->file);
+            if (Content::load($this->getTheme(), $this->file)){
+                return $this->renderContent($this->file);
+            } else {
+                return $this->renderContent($this->property('file'));
+            }
         }
     }
 
