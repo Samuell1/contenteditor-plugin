@@ -13,3 +13,5 @@
     - Added tools property
     - Added Slovak translation
 1.0.6: Fix for autocreating files for translation
+1.0.7:
+    - Enhanced fixture compatibility via data-ce-tag
