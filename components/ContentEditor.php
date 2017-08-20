@@ -38,6 +38,7 @@ class ContentEditor extends ComponentBase
             'fixture' => [
                 'title'       => 'Content block tag with disabled toolbox',
                 'description' => 'Fixed name for content block, useful for inline texts (headers, spans...)',
+                'default'     => ''
             ],
             'tools' => [
                 'title'       => 'List of enabled tools',
@@ -61,10 +62,12 @@ class ContentEditor extends ComponentBase
 
             // put content tools js + css
             $this->addCss('assets/content-tools.min.css');
-            $this->addCss('assets/additional-css.css');
             $this->addJs('assets/content-tools.min.js');
             $this->addJs('assets/contenteditor.js');
         }
+
+        // include additional css
+        $this->addCss('assets/additional-css.css');
     }
 
     public function onRender()

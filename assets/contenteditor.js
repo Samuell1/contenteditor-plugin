@@ -1,9 +1,10 @@
 /*
 * Load ContentTools
 */
-
 var editor = ContentTools.EditorApp.get();
 editor.init('[data-editable], [data-fixture]', 'data-file');
+
+var siteUrl = document.location.origin; // get site url for requests
 
 /*
 * Save event
@@ -47,7 +48,7 @@ ContentEdit.Root.get().bind('focus', function(element) {
         case '*':
             tools = ContentTools.DEFAULT_TOOLS;
             break;
-        default: 
+        default:
             tools = [element._parent._domElement.dataset.tools.split(',')];
     }
     if (element.isFixed()) tools = dataTools !== '*' ? tools : [['undo', 'redo', 'remove']];
@@ -207,7 +208,7 @@ function imageUploader(dialog) {
         xhr = new XMLHttpRequest();
         xhr.upload.addEventListener('progress', xhrProgress);
         xhr.addEventListener('readystatechange', xhrComplete);
-        xhr.open('POST', '/samuell/contenteditor/image/upload', true);
+        xhr.open('POST', siteUrl+'/samuell/contenteditor/image/upload', true);
         xhr.send(formData);
     });
 
@@ -268,7 +269,7 @@ function imageUploader(dialog) {
         // Make the request
         xhr = new XMLHttpRequest();
         xhr.addEventListener('readystatechange', xhrComplete);
-        xhr.open('POST', '/samuell/contenteditor/image/save', true);
+        xhr.open('POST', siteUrl+'/samuell/contenteditor/image/save', true);
         xhr.send(formData);
     });
 
