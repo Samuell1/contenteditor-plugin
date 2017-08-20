@@ -16,6 +16,7 @@ class ContentEditor extends ComponentBase
     public $tools;
     public $buttons;
     public $palettes;
+    public $renderCount;
 
     public function componentDetails()
     {
@@ -68,6 +69,7 @@ class ContentEditor extends ComponentBase
 
     public function onRender()
     {
+        $this->renderCount += 1;
         $this->file = $this->setFile($this->property('file'));
         $this->fixture = $this->property('fixture');
         $this->tools = $this->property('tools');
