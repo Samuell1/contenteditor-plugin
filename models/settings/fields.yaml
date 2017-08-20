@@ -46,9 +46,9 @@ tabs:
                         options: true
 
         ####
-        # TODO: later :-)
-        # external_css:
-        #     tab: Style palettes CSS
-        #     type: codeeditor
-        #     size: huge
-        #     language: css
+        additional_css:
+            tab: Additional CSS
+            label: Addional CSS that are included in website
+            type: codeeditor
+            size: huge
+            language: css
