@@ -1,0 +1,13 @@
+/* Added css */
+.ct-widget .ct-tool--subheading3:before {
+    content: "H";
+    font-size: 15px;
+}
+.ct-widget .ct-tool--subheading4:before {
+    content: "H";
+    font-size: 12px;
+}
+.ct-widget .ct-tool--subheading5:before {
+    content: "H";
+    font-size: 10px;
+}

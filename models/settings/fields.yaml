@@ -28,6 +28,7 @@ tabs:
         style_palettes:
             tab: samuell.contenteditor::lang.settings.style_palettes
             label: samuell.contenteditor::lang.settings.style_palettes
+            commentAbove: Set your style palettes and reuse them on any content. In tab Additional CSS you can define CSS for style palettes.
             type: repeater
             mode: array
             form:
@@ -50,5 +51,5 @@ tabs:
             tab: Additional CSS
             label: Addional CSS that are included in website
             type: codeeditor
-            size: huge
+            size: giant
             language: css

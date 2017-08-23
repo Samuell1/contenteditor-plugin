@@ -1,5 +1,6 @@
 <?php namespace Samuell\ContentEditor\Models;
 
+use File;
 use Lang;
 use Model;
 
@@ -10,6 +11,11 @@ class Settings extends Model
     public $settingsCode = 'samuell_contenteditor_settings';
 
     public $settingsFields = 'fields.yaml';
+
+    public function initSettingsData()
+    {
+        $this->additional_css = File::get(plugins_path().'/samuell/contenteditor/assets/additional-css.css');
+    }
 
     // list of buttons
     public function getEnabledButtonsOptions() {

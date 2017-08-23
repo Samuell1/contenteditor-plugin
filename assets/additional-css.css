@@ -1,30 +1,7 @@
-/* Added css */
-.ct-widget .ct-tool--subheading3:before {
-    content: "H";
-    font-size: 15px;
-}
-.ct-widget .ct-tool--subheading4:before {
-    content: "H";
-    font-size: 12px;
-}
-.ct-widget .ct-tool--subheading5:before {
-    content: "H";
-    font-size: 10px;
-}
 
-/* Alignment styles for images, videos and iframes in editable regions */
-/* Center (default) */
-/*iframe,
-image,
-[data-ce-tag=img],
-img,
-video {
-    clear: both;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 100%;
-}*/
+/*
+Default classes for content editor
+*/
 
 /* Left align */
 .align-left {
@@ -32,7 +9,6 @@ video {
     float: left;
     margin-right: 0.5em;
 }
-
 /* Right align */
 .align-right {
     clear: initial;
@@ -44,11 +20,9 @@ video {
 .text-center {
     text-align: center;
 }
-
 .text-left {
     text-align: left;
 }
-
 .text-right {
     text-align: right;
 }
