@@ -18,6 +18,7 @@ class ContentEditor extends ComponentBase
     public $palettes;
 
     public $renderCount;
+    public $additional_styles;
 
     public function componentDetails()
     {
@@ -71,6 +72,7 @@ class ContentEditor extends ComponentBase
 
     public function onRender()
     {
+        $this->additional_styles = Settings::renderCss();
         $this->renderCount += 1;
 
         $this->file = $this->setFile($this->property('file'));
@@ -86,7 +88,9 @@ class ContentEditor extends ComponentBase
             }
         } else {
             if (Content::load($this->getTheme(), $this->file)){
+                $content = $this->renderContent($this->file);
             } else {
+                $content = '';
             }
             return $this->renderPartial('@render.htm', ['content' => $content]);
         }
