@@ -1,31 +1,38 @@
 <{% if __SELF__.fixture %}{{ __SELF__.fixture }}{% else %}div{% endif %}
-    {% if __SELF__.fixture %}data-fixture{% else %}data-editable{% endif %}
+    {% if __SELF__.fixture %}data-fixture data-ce-tag="p"{% else %}data-editable{% endif %}
     data-component="{{ __SELF__ }}::onSave"
     data-file="{{ __SELF__.file }}"
     data-tools="{{ __SELF__.tools }}">
     {{ __SELF__.content|raw }}
 </{% if __SELF__.fixture %}{{ __SELF__.fixture }}{% else %}div{% endif %}>
 
-{% put scripts %}
-<script type="text/javascript">
-/* CONTENT EDITOR SCRIPT START */
-ContentTools.StylePalette.add([
-    {% for style in __SELF__.palettes %}
-        new ContentTools.Style('{{ style.name ? style.name : style.class }}', '{{ style.class }}', {{ style.allowed_tags|json_encode()|raw }}),
-    {% endfor %}
-]);
-editor.toolbox().tools([
-                            [
-                            {% for value in __SELF__.buttons %}
-                                '{{ value }}',
-                            {% endfor %}
-                             ],
-                             [
-                                'undo',
-                                'redo',
-                                'remove'
-                            ]
-                        ]);
-/* CONTENT EDITOR SCRIPT END */
-</script>
-{% endput %}
+{% if __SELF__.renderCount == 1 %}
+    {% put scripts %}
+    <script type="text/javascript">
+    /* CONTENT EDITOR SCRIPT START */
+    ContentTools.StylePalette.add([
+        {% for style in __SELF__.palettes %}
+            new ContentTools.Style('{{ style.name ? style.name : style.class }}', '{{ style.class }}', {{ style.allowed_tags|json_encode()|raw }}),
+        {% endfor %}
+    ]);
+    editor.toolbox().tools([
+                                [
+                                {% for value in __SELF__.buttons %}
+                                    '{{ value }}',
+                                {% endfor %}
+                                ],
+                                [
+                                    'undo',
+                                    'redo',
+                                    'remove'
+                                ]
+                            ]);
+    /* CONTENT EDITOR SCRIPT END */
+    </script>
+    {% endput %}
+    {% put styles  %}
+    <style title="contenteditor" type="text/css">
+        {{ __SELF__.additional_styles }}
+    </style>
+    {% endput %}
+{% endif %}

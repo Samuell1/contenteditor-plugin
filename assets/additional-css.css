@@ -1,0 +1,28 @@
+
+/*
+Default classes for content editor
+*/
+
+/* Left align */
+.align-left {
+    clear: initial;
+    float: left;
+    margin-right: 0.5em;
+}
+/* Right align */
+.align-right {
+    clear: initial;
+    float: right;
+    margin-left: 0.5em;
+}
+
+/* Alignment styles for text in editable regions */
+.text-center {
+    text-align: center;
+}
+.text-left {
+    text-align: left;
+}
+.text-right {
+    text-align: right;
+}

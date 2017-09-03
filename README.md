@@ -21,7 +21,7 @@ http://octobercms.com/plugin/samuell-contenteditor
 
 * file - Content block filename to edit, optional. If doesnt exists it will autocreate
 * fixture - Fixed name for content block, useful for inline texts (headers, spans...)
-* tools - List of enabled tools, comma separated (for all use *)
+* tools - List of enabled tools, comma separated (for all default tools use `*` or leave empty to get all tools defined in settings of Content Editor)
 
 *Example:*
 ```

@@ -1,7 +1,7 @@
 <?php namespace Samuell\ContentEditor\Components;
 
+use File;
 use BackendAuth;
-
 use Cms\Classes\Content;
 use Cms\Classes\CmsObject;
 use Cms\Classes\ComponentBase;
@@ -16,6 +16,9 @@ class ContentEditor extends ComponentBase
     public $tools;
     public $buttons;
     public $palettes;
+
+    public $renderCount;
+    public $additional_styles;
 
     public function componentDetails()
     {
@@ -32,16 +35,17 @@ class ContentEditor extends ComponentBase
                 'title'       => 'Content file',
                 'description' => 'Content block filename to edit, optional',
                 'default'     => '',
-                'type'        => 'dropdown',
+                'type'        => 'dropdown'
             ],
             'fixture' => [
                 'title'       => 'Content block tag with disabled toolbox',
                 'description' => 'Fixed name for content block, useful for inline texts (headers, spans...)',
+                'default'     => ''
             ],
             'tools' => [
                 'title'       => 'List of enabled tools',
                 'description' => 'List of enabled tools for selected content (for all use *)',
-                'default'     => '*',
+                'default'     => ''
             ]
         ];
     }
@@ -59,7 +63,8 @@ class ContentEditor extends ComponentBase
             $this->palettes = Settings::get('style_palettes');
 
             // put content tools js + css
-            $this->addCss('assets/content-tools.css');
+            $this->addCss('assets/content-tools.min.css');
+            $this->addCss('assets/contenteditor.css');
             $this->addJs('assets/content-tools.min.js');
             $this->addJs('assets/contenteditor.js');
         }
@@ -67,29 +72,19 @@ class ContentEditor extends ComponentBase
 
     public function onRender()
     {
+        $this->additional_styles = Settings::renderCss();
+        $this->renderCount += 1;
 
-        $this->file = $this->property('file');
+        $this->file = $this->setFile($this->property('file'));
         $this->fixture = $this->property('fixture');
         $this->tools = $this->property('tools');
 
-        // Compatability with RainLab.Translate
-        if (class_exists('\RainLab\Translate\Classes\Translator')) {
-            $locale = \RainLab\Translate\Classes\Translator::instance()->getLocale();
-            $fileName = substr_replace($this->file, '.'.$locale, strrpos($this->file, '.'), 0);
-            // if (($content = Content::loadCached($this->page->controller->getTheme(), $fileName)) !== null)
-            $this->file = $fileName;
-        }
+        $content = $this->getFile();
 
         if ($this->checkEditor()) {
-
-            if (Content::load($this->getTheme(), $this->file)){
-                $this->content = $this->renderContent($this->file);
-            } else {
-                $this->content = '';
-            }
-
+            $this->content = $content;
         } else {
-            return $this->renderContent($this->file);
+            return $this->renderPartial('@render.htm', ['content' => $content]);
         }
     }
 
@@ -109,14 +104,58 @@ class ContentEditor extends ComponentBase
                 'fileName' => $fileName,
                 'markup' => post('content')
             ]);
-            $fileContent->save();
 
+            $fileContent->save();
         }
+    }
+
+    public function getFile()
+    {
+        // if no locale file exists -> render the default, without language suffix
+        if (Content::load($this->getTheme(), $this->file)) {
+            return $this->renderContent($this->file);
+        }
+
+        return '';
+    }
+
+    public function setFile($file)
+    {
+        // Compatability with RainLab.Translate
+        if ($this->translateExists()) {
+            return $this->setTranslateFile($file);
+        }
+
+        return $file;
+    }
+
+    public function setTranslateFile($file)
+    {
+        $translate = \RainLab\Translate\Classes\Translator::instance();
+        $defaultLocale = $translate->getDefaultLocale();
+        $locale = $translate->getLocale();
+
+        // Compability with Rainlab.StaticPage
+        // StaticPages content does not append default locale to file.
+        if ($this->fileExists($file) && $locale === $defaultLocale) {
+          return $file;
+        }
+
+        return substr_replace($file, '.'.$locale, strrpos($file, '.'), 0);
     }
 
     public function checkEditor()
     {
         $backendUser = BackendAuth::getUser();
         return $backendUser && $backendUser->hasAccess(Settings::get('permissions', 'cms.manage_content'));
+    }
+
+    public function fileExists($file) {
+        return File::exists((new Content)->getFilePath($file));
+    }
+
+    public function translateExists()
+    {
+        return class_exists('\RainLab\Translate\Classes\Translator');
     }
 }

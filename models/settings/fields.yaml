@@ -28,6 +28,7 @@ tabs:
         style_palettes:
             tab: samuell.contenteditor::lang.settings.style_palettes
             label: samuell.contenteditor::lang.settings.style_palettes
+            commentAbove: samuell.contenteditor::lang.settings.style_palettes_desc
             type: repeater
             mode: array
             form:
@@ -46,9 +47,9 @@ tabs:
                         options: true
 
         ####
-        # TODO: later :-)
-        # external_css:
-        #     tab: Style palettes CSS
-        #     type: codeeditor
-        #     size: huge
-        #     language: css
+        additional_styles:
+            tab: samuell.contenteditor::lang.settings.additional_styles
+            label: samuell.contenteditor::lang.settings.additional_styles_label
+            type: codeeditor
+            size: giant
+            language: css
