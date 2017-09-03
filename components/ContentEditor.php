@@ -35,7 +35,7 @@ class ContentEditor extends ComponentBase
                 'title'       => 'Content file',
                 'description' => 'Content block filename to edit, optional',
                 'default'     => '',
-                'type'        => 'dropdown',
+                'type'        => 'dropdown'
             ],
             'fixture' => [
                 'title'       => 'Content block tag with disabled toolbox',
@@ -45,7 +45,7 @@ class ContentEditor extends ComponentBase
             'tools' => [
                 'title'       => 'List of enabled tools',
                 'description' => 'List of enabled tools for selected content (for all use *)',
-                'default'     => '',
+                'default'     => ''
             ]
         ];
     }
