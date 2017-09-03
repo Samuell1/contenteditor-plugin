@@ -79,19 +79,11 @@ class ContentEditor extends ComponentBase
         $this->fixture = $this->property('fixture');
         $this->tools = $this->property('tools');
 
+        $content = $this->getFile();
+
         if ($this->checkEditor()) {
-            // if no locale file exists -> render the default, without language suffix
-            if (Content::load($this->getTheme(), $this->file)){
-                $this->content = $this->renderContent($this->file);
-            } else {
-                $this->content = '';
-            }
+            $this->content = $content;
         } else {
-            if (Content::load($this->getTheme(), $this->file)){
-                $content = $this->renderContent($this->file);
-            } else {
-                $content = '';
-            }
             return $this->renderPartial('@render.htm', ['content' => $content]);
         }
     }
@@ -115,6 +107,16 @@ class ContentEditor extends ComponentBase
 
             $fileContent->save();
         }
+    }
+
+    public function getFile()
+    {
+        // if no locale file exists -> render the default, without language suffix
+        if (Content::load($this->getTheme(), $this->file)) {
+            return $this->renderContent($this->file);
+        }
+
+        return '';
     }
 
     public function setFile($file)
