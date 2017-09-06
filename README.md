@@ -9,7 +9,7 @@ http://octobercms.com/plugin/samuell-contenteditor
 ### How to use it? It`s simple.
 
 * Drop the Content Editor component to a CMS page.
-* Check if you have `{% framework %}` and `{% scripts %}` inside layout for working ajax requests and `{% styles %} for additional css
+* Check if you have `{% framework %}` and `{% scripts %}` inside layout for working ajax requests and `{% styles %}` for additional css
 * Use this code in your page code and link the editor to a content file or set name to autocreate new file
 
 *Simple example:*
