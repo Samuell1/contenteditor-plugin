@@ -55,7 +55,7 @@ Route::post('/samuell/contenteditor/image/upload', function () {
 
     }
 
-});
+})->middleware('web');
 
 Route::post('/samuell/contenteditor/image/save', function () {
 
@@ -74,7 +74,7 @@ Route::post('/samuell/contenteditor/image/save', function () {
 
     }
 
-});
+})->middleware('web');
 
 function checkEditor()
 {
