@@ -1,4 +1,6 @@
-{{ content|raw }}
+{% if SELF.fixture %}<{{ SELF.fixture }}>{% endif %}
+    {{ content|raw }}
+{% if SELF.fixture %}</{{ SELF.fixture }}>{% endif %}
 
 {% if __SELF__.renderCount == 1 %}
     {% put styles  %}
