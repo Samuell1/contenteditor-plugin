@@ -16,12 +16,14 @@ class Settings extends Model
 
     const CACHE_KEY = 'samuell:contenteditor.additional_styles';
 
-    public function initSettingsData() {
+    public function initSettingsData()
+    {
         $this->additional_styles = File::get(plugins_path().'/samuell/contenteditor/assets/additional-css.css');
     }
 
     // list of buttons
-    public function getEnabledButtonsOptions() {
+    public function getEnabledButtonsOptions()
+    {
         return [
             'bold'           => 'Bold (b)',
             'italic'         => 'Italic (i)',
@@ -54,7 +56,8 @@ class Settings extends Model
     }
 
     // list of allowed tags
-    public function getAllowedTagsOptions() {
+    public function getAllowedTagsOptions()
+    {
         return [
             'p',
             'img',
@@ -95,6 +98,7 @@ class Settings extends Model
         }
         return $customCss;
     }
+
     public static function compileCss()
     {
         $parser = new Less_Parser(['compress' => true]);
