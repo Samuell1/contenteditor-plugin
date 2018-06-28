@@ -73,7 +73,7 @@ class ContentEditor extends ComponentBase
     public function onRender()
     {
         $this->additional_styles = Settings::renderCss();
-        $this->renderCount += 1;
+        $this->renderCount = $this->page['renderCount'] += 1;
 
         $this->file = $this->setFile($this->property('file'));
         $this->fixture = $this->property('fixture');
