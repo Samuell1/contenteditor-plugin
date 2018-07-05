@@ -14,6 +14,7 @@ class ContentEditor extends ComponentBase
     public $file;
     public $fixture;
     public $tools;
+    public $class;
     public $buttons;
     public $palettes;
 
@@ -46,7 +47,7 @@ class ContentEditor extends ComponentBase
                 'title'       => 'List of enabled tools',
                 'description' => 'List of enabled tools for selected content (for all use *)',
                 'default'     => ''
-            ]
+            ],
         ];
     }
 
@@ -73,11 +74,12 @@ class ContentEditor extends ComponentBase
     public function onRender()
     {
         $this->additional_styles = Settings::renderCss();
-        $this->renderCount += 1;
+        $this->renderCount = $this->page['renderCount'] += 1;
 
         $this->file = $this->setFile($this->property('file'));
         $this->fixture = $this->property('fixture');
         $this->tools = $this->property('tools');
+        $this->class = $this->property('class');
 
         $content = $this->getFile();
 
