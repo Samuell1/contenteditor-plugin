@@ -3,7 +3,7 @@
     data-component="{{ __SELF__ }}::onSave"
     data-file="{{ __SELF__.file }}"
     data-tools="{{ __SELF__.tools }}"
-    {% if __SELF__.class %}class="{{ class }}"{% endif %}>
+    {% if __SELF__.class %}class="{{ __SELF__.class }}"{% endif %}>
     {{ __SELF__.content|raw }}
 </{% if __SELF__.fixture %}{{ __SELF__.fixture }}{% else %}div{% endif %}>
 
