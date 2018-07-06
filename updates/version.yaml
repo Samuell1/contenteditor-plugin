@@ -25,3 +25,5 @@
 1.2.0: 
     - Support classes for fixture
     - Fix renderCount if component using other alias name
+1.2.1:
+    - Fix render __SELF__.class  in component partials
