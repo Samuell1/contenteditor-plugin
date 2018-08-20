@@ -41,7 +41,7 @@ Route::post('/samuell/contenteditor/image/upload', function () {
              list($width, $height) = getimagesize($uploadedFile);
 
              return Response::json([
-                 'url'      => '/storage/app/media'.$path.'/'.$fileName,
+                 'url'      => MediaLibrary::instance()->getPathUrl($path.'/'.$fileName),
                  'filename' => $fileName,
                  'size'     => [
                                 $width,
