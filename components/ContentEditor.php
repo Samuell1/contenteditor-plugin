@@ -11,6 +11,7 @@ use Samuell\ContentEditor\Models\Settings;
 class ContentEditor extends ComponentBase
 {
     public $content;
+    public $defaultFile;
     public $file;
     public $fixture;
     public $tools;
@@ -76,6 +77,7 @@ class ContentEditor extends ComponentBase
         $this->additional_styles = Settings::renderCss();
         $this->renderCount = $this->page['renderCount'] += 1;
 
+        $this->defaultFile = $this->property('file');
         $this->file = $this->setFile($this->property('file'));
         $this->fixture = $this->property('fixture');
         $this->tools = $this->property('tools');
@@ -113,9 +115,11 @@ class ContentEditor extends ComponentBase
 
     public function getFile()
     {
-        // if no locale file exists -> render the default, without language suffix
+        
         if (Content::load($this->getTheme(), $this->file)) {
             return $this->renderContent($this->file);
+        } else if (Content::load($this->getTheme(), $this->defaultFile)) { // if no locale file exists -> render the default, without language suffix
+            return $this->renderContent($this->defaultFile);
         }
 
         return '';

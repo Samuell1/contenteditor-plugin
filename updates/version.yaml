@@ -27,3 +27,7 @@
     - Fix renderCount if component using other alias name
 1.2.1:
     - Fix render __SELF__.class  in component partials
+1.2.2:
+    - Handle various storage paths for images
+1.2.3:
+    - Load default file if language file does not exists
