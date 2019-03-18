@@ -8,10 +8,10 @@
     "authors": [
         {
             "name": "Samuell"
-        },
+        }
     ],
     "require": {
         "php": ">=7.0",
-        "composer/installers": "~1.0",
+        "composer/installers": "~1.0"
     }
 }
