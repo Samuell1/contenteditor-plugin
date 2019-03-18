@@ -1,0 +1,17 @@
+{
+    "name": "samuell/contenteditor",
+    "type": "october-plugin",
+    "description": "Allows you to edit content files on the front-end pages.",
+    "license": "MIT",
+    "homepage": "https://github.com/Samuell1/contenteditor-plugin",
+    "keywords": ["content", "editor", "octobercms"],
+    "authors": [
+        {
+            "name": "Samuell"
+        },
+    ],
+    "require": {
+        "php": ">=7.0",
+        "composer/installers": "~1.0",
+    }
+}
