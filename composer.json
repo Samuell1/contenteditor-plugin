@@ -1,5 +1,5 @@
 {
-    "name": "samuell/contenteditor",
+    "name": "samuell/contenteditor-plugin",
     "type": "october-plugin",
     "description": "Allows you to edit content files on the front-end pages.",
     "license": "MIT",
