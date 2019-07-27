@@ -18,7 +18,7 @@ class Settings extends Model
 
     public function initSettingsData()
     {
-        $this->additional_styles = File::get(plugins_path().'/samuell/contenteditor/assets/additional-css.css');
+        $this->additional_styles = File::get(plugins_path() . '/samuell/contenteditor/assets/additional-css.css');
     }
 
     // list of buttons
@@ -92,8 +92,7 @@ class Settings extends Model
         try {
             $customCss = self::compileCss();
             Cache::forever(self::CACHE_KEY, $customCss);
-        }
-        catch (Exception $ex) {
+        } catch (Exception $ex) {
             $customCss = '/* ' . $ex->getMessage() . ' */';
         }
         return $customCss;
