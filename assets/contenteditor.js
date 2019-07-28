@@ -2,7 +2,13 @@
 * Load ContentTools
 */
 var editor = ContentTools.EditorApp.get();
-editor.init('[data-editable], [data-fixture]', 'data-file');
+editor.init(
+    '[data-editable], [data-fixture]',
+    'data-file',
+    function (domElement) { 
+        return domElement.hasAttribute('data-fixture');
+    }
+);
 
 var siteUrl = document.location.origin; // get site url for requests
 
