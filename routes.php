@@ -33,9 +33,13 @@ Route::post('/samuell/contenteditor/image/upload', function () {
              $path = Settings::get('image_folder', 'contenteditor');
              $path = MediaLibrary::validatePath($path);
 
+             $realPath = empty(trim($uploadedFile->getRealPath()))
+                ? $uploadedFile->getPath() . DIRECTORY_SEPARATOR . $uploadedFile->getFileName()
+                : $uploadedFile->getRealPath();
+
              MediaLibrary::instance()->put(
                  $path.'/'.$fileName,
-                 File::get($uploadedFile->getRealPath())
+                 File::get($realPath)
              );
 
              list($width, $height) = getimagesize($uploadedFile);
