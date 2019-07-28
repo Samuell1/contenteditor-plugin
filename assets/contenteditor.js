@@ -12,7 +12,7 @@ editor.init(
 
 var siteUrl = document.location.origin; // get site url for requests
 
-ContentTools.RESTRICTED_ATTRIBUTES['*'] = [] // allow style attribute on elements
+ContentTools.RESTRICTED_ATTRIBUTES['*'] = []; // allow style attribute on elements
 
 /*
 * Save event
