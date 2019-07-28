@@ -1,9 +1,9 @@
 <?php
 
 use Samuell\ContentEditor\Models\Settings;
-use Cms\Classes\ComponentPartial;
 use Cms\Classes\MediaLibrary;
 use Cms\Helpers\File as FileHelper;
+use October\Rain\Database\Attach\Resizer;
 
 Route::post('/samuell/contenteditor/image/upload', function () {
 
@@ -46,14 +46,14 @@ Route::post('/samuell/contenteditor/image/upload', function () {
 
              return Response::json([
                  'url'      => MediaLibrary::instance()->getPathUrl($path.'/'.$fileName),
+                 'filePath' => $path.'/'.$fileName,
                  'filename' => $fileName,
                  'size'     => [
-                                $width,
-                                $height
-                                ]
+                    $width,
+                    $height
+                ]
              ]);
-         }
-         catch (Exception $ex) {
+         } catch (Exception $ex) {
              return $ex;
          }
 
@@ -65,15 +65,39 @@ Route::post('/samuell/contenteditor/image/save', function () {
 
     if (checkEditor()) {
 
+        if (post('crop')) {
+            $crop = explode(',', post('crop'));
+
+            $file = MediaLibrary::instance()->get(post('filePath'));
+            $tempDirectory = temp_path().'/contenteditor';
+            $tempFilePath = temp_path().post('filePath');
+            File::makeDirectory($tempDirectory, 0777, true, true);
+
+            if (!File::put($tempFilePath, $file)) {
+                throw new SystemException('Error saving remote file to a temporary location.');
+            }
+
+            Resizer::open($tempFilePath)
+                ->crop(
+                    floor(post('width') * $crop[1]),
+                    floor(post('height') * $crop[0]),
+                    floor(post('width') * $crop[3] - post('width') * $crop[1]),
+                    floor(post('height') * $crop[2] - post('height') * $crop[0])
+                )
+                ->save($tempFilePath, 100);
+
+            MediaLibrary::instance()->put(post('filePath'), file_get_contents($tempFilePath));
+        }
+
         return Response::json([
             'url'   => post('url'),
             'width' => post('width'),
             'crop'  => post('crop'),
             'alt'   => post('alt'),
             'size'  => [
-                        post('width'),
-                        post('height')
-                        ]
+                post('width'),
+                post('height')
+            ]
         ]);
 
     }

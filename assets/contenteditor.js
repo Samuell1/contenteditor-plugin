@@ -139,6 +139,49 @@ ContentTools.Tools.Subheading5 = (function(_super) {
 function imageUploader(dialog) {
     var image, xhr, xhrComplete, xhrProgress;
 
+
+    // Image rotate
+    // function rotateImage(direction) {
+    //     var formData;
+
+    //     xhrComplete = function (event) {
+    //         var response;
+    //         if (parseInt(event.target.readyState) !== 4) return;
+
+    //         xhr = null;
+    //         xhrComplete = null;
+    //         dialog.busy(false);
+
+    //         if (parseInt(event.target.status) === 200) {
+    //             response = JSON.parse(event.target.responseText);
+    //             if (response.errors) {
+    //                 for (var k in response.errors) console.log(response.errors[k]);
+    //                 new ContentTools.FlashUI('no');
+    //             }
+    //             else {
+    //                 image = {
+    //                     size: response.size,
+    //                     url: response.url + '?_ignore=' + Date.now()
+    //                 };
+    //                 dialog.populate(image.url, image.size);
+    //             }
+    //         } else {
+    //             new ContentTools.FlashUI('no');
+    //         }
+    //     };
+
+    //     dialog.busy(true);
+
+    //     formData = new FormData();
+    //     formData.append('url', image.url);
+    //     formData.append('direction', direction);
+
+    //     xhr = new XMLHttpRequest();
+    //     xhr.addEventListener('readystatechange', xhrComplete);
+    //     xhr.open('POST', siteUrl+'/samuell/contenteditor/image/rotate', true);
+    //     xhr.send(formData);
+    // }
+
     // Image upload cancel
     dialog.addEventListener('imageuploader.cancelUpload', function () {
         // Stop the upload
@@ -157,6 +200,14 @@ function imageUploader(dialog) {
         dialog.clear();
         image = null;
     });
+
+    // dialog.addEventListener('imageuploader.rotateccw', function () {
+    //     rotateImage('CCW');
+    // });
+
+    // dialog.addEventListener('imageuploader.rotatecw', function () {
+    //     rotateImage('CW');
+    // });
 
     // Image upload
     dialog.addEventListener('imageuploader.fileready', function (ev) {
@@ -186,20 +237,20 @@ function imageUploader(dialog) {
 
             // Handle the result of the upload
             if (parseInt(ev.target.status) == 200) {
-                // Unpack the response (from JSON)
                 response = JSON.parse(ev.target.responseText);
-
-                // Store the image details
-                image = {
+                if (response.errors) {
+                    for (var k in response.errors) console.log(response.errors[k]);
+                    new ContentTools.FlashUI('no');
+                } else {
+                    image = {
                         size: response.size,
                         alt: response.filename,
-                        url: response.url
-                        };
-
-                // Populate the dialog
-                dialog.populate(image.url, image.size);
+                        url: response.url,
+                        filePath: response.filePath
+                    };
+                    dialog.populate(image.url, image.size);
+                }
             } else {
-                // The request failed, notify the user
                 new ContentTools.FlashUI('no');
             }
         }
@@ -265,6 +316,7 @@ function imageUploader(dialog) {
         // Build the form data to post to the server
         formData = new FormData();
         formData.append('url', image.url);
+        formData.append('filePath', image.filePath);
         formData.append('width', image.size[0]);
         formData.append('height', image.size[1]);
         formData.append('alt', image.alt);
