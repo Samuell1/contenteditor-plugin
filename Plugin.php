@@ -1,8 +1,5 @@
 <?php namespace Samuell\ContentEditor;
 
-use App;
-use Event;
-use Backend;
 use System\Classes\PluginBase;
 
 /**
@@ -44,6 +41,16 @@ class Plugin extends PluginBase
                 'order'       => 500,
                 'permissions' => ['samuell.contenteditor.access_settings']
             ]
+        ];
+    }
+
+    public function registerPermissions()
+    {
+        return [
+            'samuell.contenteditor.access_settings' => [
+                'tab' => 'Content Editor',
+                'label' => 'Access content editor settings'
+            ],
         ];
     }
 }
