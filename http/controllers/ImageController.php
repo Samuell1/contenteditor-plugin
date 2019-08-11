@@ -74,8 +74,13 @@ class ImageController extends Controller
 
     public function save()
     {
-        if (post('crop')) {
-            $crop = explode(',', post('crop'));
+        $url = post('url');
+        $crop = post('crop');
+        $width = post('width');
+        $height = post('height');
+
+        if ($crop && $crop != '0,0,1,1') {
+            $crop = explode(',', $crop);
 
             $file = MediaLibrary::instance()->get(post('filePath'));
             $tempDirectory = temp_path().'/contenteditor';
@@ -86,26 +91,34 @@ class ImageController extends Controller
                 throw new SystemException('Error saving remote file to a temporary location.');
             }
 
+            $width = floor(post('width') * $crop[3] - post('width') * $crop[1]);
+            $height = floor(post('height') * $crop[2] - post('height') * $crop[0]);
+
             Resizer::open($tempFilePath)
                 ->crop(
                     floor(post('width') * $crop[1]),
                     floor(post('height') * $crop[0]),
-                    floor(post('width') * $crop[3] - post('width') * $crop[1]),
-                    floor(post('height') * $crop[2] - post('height') * $crop[0])
+                    $width,
+                    $height
                 )
                 ->save($tempFilePath, 100);
 
-            MediaLibrary::instance()->put(post('filePath'), file_get_contents($tempFilePath));
+            $pathParts = pathinfo(post('filePath'));
+            $newFilePath = $pathParts['dirname'] . '/' . $pathParts['filename'] . '-c.' . $pathParts['extension'];
+
+            MediaLibrary::instance()->put($newFilePath, file_get_contents($tempFilePath));
+
+            $url = MediaLibrary::instance()->getPathUrl($newFilePath);
         }
 
         return Response::json([
-            'url'   => post('url'),
-            'width' => post('width'),
+            'url'   => $url,
+            'width' => $width,
             'crop'  => post('crop'),
             'alt'   => post('alt'),
             'size'  => [
-                post('width'),
-                post('height')
+                $width,
+                $height
             ]
         ]);
     }
