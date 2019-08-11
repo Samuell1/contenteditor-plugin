@@ -31,3 +31,7 @@
     - Handle various storage paths for images
 1.2.3:
     - Load default file if language file does not exists
+1.2.4:
+    - Allow style attribute in property dialog
+    - Add support for image cropping
+    - Added permissions for backend settings page
