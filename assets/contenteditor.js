@@ -178,7 +178,7 @@ function imageUploader(dialog) {
 
     //     xhr = new XMLHttpRequest();
     //     xhr.addEventListener('readystatechange', xhrComplete);
-    //     xhr.open('POST', siteUrl+'/samuell/contenteditor/image/rotate', true);
+    //     xhr.open('POST', siteUrl+'/contenteditor/image/rotate', true);
     //     xhr.send(formData);
     // }
 
@@ -267,7 +267,7 @@ function imageUploader(dialog) {
         xhr = new XMLHttpRequest();
         xhr.upload.addEventListener('progress', xhrProgress);
         xhr.addEventListener('readystatechange', xhrComplete);
-        xhr.open('POST', siteUrl+'/samuell/contenteditor/image/upload', true);
+        xhr.open('POST', siteUrl+'/contenteditor/image/upload', true);
         xhr.send(formData);
     });
 
@@ -329,7 +329,7 @@ function imageUploader(dialog) {
         // Make the request
         xhr = new XMLHttpRequest();
         xhr.addEventListener('readystatechange', xhrComplete);
-        xhr.open('POST', siteUrl+'/samuell/contenteditor/image/save', true);
+        xhr.open('POST', siteUrl+'/contenteditor/image/save', true);
         xhr.send(formData);
     });
 
