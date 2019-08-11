@@ -10,9 +10,9 @@ class EditorPermissionsMiddleware
     {
         $backendUser = BackendAuth::getUser();
         if ($backendUser && $backendUser->hasAccess(Settings::get('permissions', 'cms.manage_content'))) {
-            return abort(404);
+            return $next($request);
         }
 
-        return $next($request);
+        return abort(404);
     }
 }
