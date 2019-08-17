@@ -1,5 +1,6 @@
 <?php namespace Samuell\ContentEditor\Components;
 
+use Cache;
 use File;
 use BackendAuth;
 use Cms\Classes\Content;
@@ -88,7 +89,9 @@ class ContentEditor extends ComponentBase
         if ($this->checkEditor()) {
             $this->content = $content;
         } else {
-            return $this->renderPartial('@render.htm', ['content' => $content]);
+            return Cache::remember('contenteditor::content-' . $this->file, now()->addHours(24), function () use ($content) {
+                return $this->renderPartial('@render.htm', ['content' => $content]);
+            });
         }
     }
 
