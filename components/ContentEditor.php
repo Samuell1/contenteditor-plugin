@@ -113,12 +113,14 @@ class ContentEditor extends ComponentBase
             ]);
 
             $fileContent->save();
+
+            // Clear cache if file was changed
+            Cache::forget('contenteditor::content-' . $fileName);
         }
     }
 
     public function getFile()
     {
-        
         if (Content::load($this->getTheme(), $this->file)) {
             return $this->renderContent($this->file);
         } else if (Content::load($this->getTheme(), $this->defaultFile)) { // if no locale file exists -> render the default, without language suffix
