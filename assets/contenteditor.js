@@ -5,7 +5,7 @@ var editor = ContentTools.EditorApp.get();
 editor.init(
     '[data-editable], [data-fixture]',
     'data-file',
-    function (domElement) { 
+    function (domElement) {
         return domElement.hasAttribute('data-fixture');
     }
 );
@@ -23,9 +23,7 @@ editor.addEventListener('saved', function (ev) {
     regions = ev.detail().regions;
 
     for (name in regions) {
-
-        if (regions.hasOwnProperty(name))
-        {
+        if (regions.hasOwnProperty(name)) {
             var component = $('*[data-file="' + name + '"]').data('component'); // check for component name
             $.request(component, {
                 data: {
@@ -37,7 +35,7 @@ editor.addEventListener('saved', function (ev) {
     }
 
     new ContentTools.FlashUI('ok');
-    setTimeout(function(){
+    setTimeout(function () {
         editor.busy(false);
     }, 600);
 
@@ -46,7 +44,7 @@ editor.addEventListener('saved', function (ev) {
 /*
 * Fixture focus
 */
-ContentEdit.Root.get().bind('focus', function(element) {
+ContentEdit.Root.get().bind('focus', function (element) {
     var dataTools = element._parent._domElement.dataset.tools
     var tools;
     switch (dataTools) {
@@ -67,7 +65,7 @@ ContentEdit.Root.get().bind('focus', function(element) {
 * Predefined tools
 */
 var __hasProp = {}.hasOwnProperty;
-var __extends = function(child, parent) {
+var __extends = function (child, parent) {
     for (var key in parent) {
         if (__hasProp.call(parent, key))
             child[key] = parent[key];
@@ -85,11 +83,11 @@ var __extends = function(child, parent) {
     return child;
 };
 
-ContentTools.Tools.Subheading3 = (function(_super) {
+ContentTools.Tools.Subheading3 = (function (_super) {
     __extends(Subheading3, _super);
 
     function Subheading3() {
-    return Subheading3.__super__.constructor.apply(this, arguments);
+        return Subheading3.__super__.constructor.apply(this, arguments);
     }
 
     ContentTools.ToolShelf.stow(Subheading3, 'subheading3');
@@ -101,11 +99,11 @@ ContentTools.Tools.Subheading3 = (function(_super) {
 
 })(ContentTools.Tools.Heading);
 
-ContentTools.Tools.Subheading4 = (function(_super) {
+ContentTools.Tools.Subheading4 = (function (_super) {
     __extends(Subheading4, _super);
 
     function Subheading4() {
-    return Subheading4.__super__.constructor.apply(this, arguments);
+        return Subheading4.__super__.constructor.apply(this, arguments);
     }
 
     ContentTools.ToolShelf.stow(Subheading4, 'subheading4');
@@ -117,11 +115,11 @@ ContentTools.Tools.Subheading4 = (function(_super) {
 
 })(ContentTools.Tools.Heading);
 
-ContentTools.Tools.Subheading5 = (function(_super) {
+ContentTools.Tools.Subheading5 = (function (_super) {
     __extends(Subheading5, _super);
 
     function Subheading5() {
-    return Subheading5.__super__.constructor.apply(this, arguments);
+        return Subheading5.__super__.constructor.apply(this, arguments);
     }
 
     ContentTools.ToolShelf.stow(Subheading5, 'subheading5');
@@ -267,7 +265,7 @@ function imageUploader(dialog) {
         xhr = new XMLHttpRequest();
         xhr.upload.addEventListener('progress', xhrProgress);
         xhr.addEventListener('readystatechange', xhrComplete);
-        xhr.open('POST', siteUrl+'/contenteditor/image/upload', true);
+        xhr.open('POST', siteUrl + '/contenteditor/image/upload', true);
         xhr.send(formData);
     });
 
@@ -329,7 +327,7 @@ function imageUploader(dialog) {
         // Make the request
         xhr = new XMLHttpRequest();
         xhr.addEventListener('readystatechange', xhrComplete);
-        xhr.open('POST', siteUrl+'/contenteditor/image/save', true);
+        xhr.open('POST', siteUrl + '/contenteditor/image/save', true);
         xhr.send(formData);
     });
 
