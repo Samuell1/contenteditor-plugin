@@ -57,7 +57,7 @@ ContentEdit.Root.get().bind('focus', function(element) {
             tools = ContentTools.DEFAULT_TOOLS;
             break;
         default:
-            tools = [element._parent._domElement.dataset.tools.split(',')];
+            tools = [dataTools ? dataTools.split(',') : ''];
     }
     if (element.isFixed()) tools = dataTools !== '*' ? tools : [['undo', 'redo', 'remove']];
     if (editor.toolbox().tools() !== tools) editor.toolbox().tools(tools);
