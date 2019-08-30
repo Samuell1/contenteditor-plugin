@@ -11,6 +11,7 @@ use Cms\Classes\MediaLibrary;
 use Cms\Helpers\File as FileHelper;
 use Samuell\ContentEditor\Models\Settings;
 use Samuell\ContentEditor\Http\Middleware\EditorPermissionsMiddleware;
+use October\Rain\Support\Facades\Str;
 
 class ImageController extends Controller
 {
