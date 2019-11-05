@@ -49,6 +49,7 @@ ContentEdit.Root.get().bind('focus', function (element) {
     var tools;
     switch (dataTools) {
         case '':
+        case undefined:
             tools = editor._toolbox._tools;
             break;
         case '*':
