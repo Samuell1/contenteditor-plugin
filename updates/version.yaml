@@ -39,3 +39,5 @@
     - Add component caching
 1.2.6:
     - Small fixes
+1.2.7:
+    - Fix issue with undefined tools
