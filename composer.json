@@ -1,13 +1,15 @@
 {
-    "name": "samuell/contenteditor-plugin",
+    "name": "onioncreative/contenteditor-plugin",
     "type": "october-plugin",
     "description": "Allows you to edit content files on the front-end pages.",
     "license": "MIT",
-    "homepage": "https://github.com/Samuell1/contenteditor-plugin",
+    "homepage": "https://github.com/kelvinleehk/contenteditor-plugin",
     "keywords": ["content", "editor", "octobercms"],
     "authors": [
         {
-            "name": "Samuell"
+            "name": "Joe Lam",
+            "email": "joelam@onioncreative.com",
+            "role": "Developer"
         }
     ],
     "require": {
