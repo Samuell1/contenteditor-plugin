@@ -49,6 +49,7 @@ ContentEdit.Root.get().bind('focus', function (element) {
     var tools;
     switch (dataTools) {
         case '':
+        case undefined:
             tools = editor._toolbox._tools;
             break;
         case '*':
@@ -295,7 +296,7 @@ function imageUploader(dialog) {
                 // Trigger the save event against the dialog with details of the
                 // image to be inserted.
                 dialog.save(
-                    response.url,
+                    response.filePath,
                     response.size,
                     {
                         'alt': response.alt,
