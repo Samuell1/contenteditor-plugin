@@ -47,13 +47,13 @@ class Plugin extends PluginBase
     public function registerPermissions()
     {
         return [
-            'samuell.contenteditor.access_settings' => [
-                'tab' => 'Content Editor',
-                'label' => 'Access content editor settings'
-            ],
             'samuell.contenteditor.editor' => [
                 'tab' => 'Content Editor',
                 'label' => 'Allow to use content editor on frontend'
+            ],
+            'samuell.contenteditor.access_settings' => [
+                'tab' => 'Content Editor',
+                'label' => 'Access content editor settings'
             ],
         ];
     }
