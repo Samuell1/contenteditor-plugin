@@ -51,6 +51,10 @@ class Plugin extends PluginBase
                 'tab' => 'Content Editor',
                 'label' => 'Access content editor settings'
             ],
+            'samuell.contenteditor.editor' => [
+                'tab' => 'Content Editor',
+                'label' => 'Allow to use content editor on frontend'
+            ],
         ];
     }
 }

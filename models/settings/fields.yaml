@@ -11,12 +11,6 @@ tabs:
             span: left
             label: samuell.contenteditor::lang.settings.main_settings
             type: checkboxlist
-        permissions:
-            tab: samuell.contenteditor::lang.settings.main_settings
-            span: right
-            label: samuell.contenteditor::lang.settings.permissions
-            commentAbove: samuell.contenteditor::lang.settings.permissions_comment
-            default: 'cms.manage_content'
         image_folder:
             tab: samuell.contenteditor::lang.settings.main_settings
             span: right

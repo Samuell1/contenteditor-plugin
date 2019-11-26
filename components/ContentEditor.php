@@ -158,7 +158,7 @@ class ContentEditor extends ComponentBase
     public function checkEditor()
     {
         $backendUser = BackendAuth::getUser();
-        return $backendUser && $backendUser->hasAccess(Settings::get('permissions', 'cms.manage_content'));
+        return $backendUser && $backendUser->hasAccess('samuell.contenteditor.editor');
     }
 
     public function fileExists($file) {

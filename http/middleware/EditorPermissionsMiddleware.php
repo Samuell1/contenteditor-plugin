@@ -1,7 +1,6 @@
 <?php namespace Samuell\ContentEditor\Http\Middleware;
 
 use Closure;
-use Samuell\ContentEditor\Models\Settings;
 use Backend\Facades\BackendAuth;
 
 class EditorPermissionsMiddleware
@@ -9,7 +8,7 @@ class EditorPermissionsMiddleware
     public function handle($request, Closure $next)
     {
         $backendUser = BackendAuth::getUser();
-        if ($backendUser && $backendUser->hasAccess(Settings::get('permissions', 'cms.manage_content'))) {
+        if ($backendUser && $backendUser->hasAccess('samuell.contenteditor.editor')) {
             return $next($request);
         }
 
