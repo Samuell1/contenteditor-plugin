@@ -50,6 +50,11 @@ class ContentEditor extends ComponentBase
                 'description' => 'List of enabled tools for selected content (for all use *)',
                 'default'     => ''
             ],
+            'class' => [
+                'title'       => 'CSS classes',
+                'description' => 'CSS class or classes that should be applied to the content block when rendered',
+                'default'     => ''
+            ],
         ];
     }
 
