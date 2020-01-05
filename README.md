@@ -4,7 +4,7 @@ Edit content from front-end.
 
 http://octobercms.com/plugin/samuell-contenteditor
 
-<img src="http://octobercms.com/storage/app/uploads/public/572/dfc/ec4/572dfcec4d675487425233.png">
+<img src="https://octobercms.com/storage/app/uploads/public/5e1/21f/14d/5e121f14dc10a304078423.png">
 
 ### How to use it? It`s simple.
 
