@@ -296,7 +296,7 @@ function imageUploader(dialog) {
                 // Trigger the save event against the dialog with details of the
                 // image to be inserted.
                 dialog.save(
-                    response.url,
+                    response.filePath,
                     response.size,
                     {
                         'alt': response.alt,

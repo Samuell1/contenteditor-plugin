@@ -79,6 +79,8 @@ class ImageController extends Controller
         $crop = post('crop');
         $width = post('width');
         $height = post('height');
+        $filePath = post('filePath');
+        $relativeFilePath = config('cms.storage.media.path').$filePath;
 
         if ($crop && $crop != '0,0,1,1') {
             $crop = explode(',', $crop);
@@ -113,11 +115,12 @@ class ImageController extends Controller
         }
 
         return Response::json([
-            'url'   => $url,
-            'width' => $width,
-            'crop'  => post('crop'),
-            'alt'   => post('alt'),
-            'size'  => [
+            'url'       => $url,
+            'filePath'  => $relativeFilePath,
+            'width'     => $width,
+            'crop'      => post('crop'),
+            'alt'       => post('alt'),
+            'size'      => [
                 $width,
                 $height
             ]
