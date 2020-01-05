@@ -21,7 +21,6 @@ class ContentEditor extends ComponentBase
     public $palettes;
 
     public $renderCount;
-    public $additional_styles;
 
     public function componentDetails()
     {
@@ -80,7 +79,6 @@ class ContentEditor extends ComponentBase
 
     public function onRender()
     {
-        $this->additional_styles = Settings::renderCss();
         $this->renderCount = $this->page['renderCount'] += 1;
 
         $this->defaultFile = $this->property('file');

@@ -5,8 +5,6 @@
 
 {% if __SELF__.renderCount == 1 %}
     {% put styles  %}
-    <style title="contenteditor" type="text/css">
-        {{ __SELF__.additional_styles }}
-    </style>
+        <link rel="stylesheet" href="/contenteditor/css">
     {% endput %}
 {% endif %}
