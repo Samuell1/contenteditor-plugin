@@ -4,7 +4,6 @@ use Cache;
 use File;
 use BackendAuth;
 use Cms\Classes\Content;
-use Cms\Classes\CmsObject;
 use Cms\Classes\ComponentBase;
 
 use Samuell\ContentEditor\Models\Settings;
