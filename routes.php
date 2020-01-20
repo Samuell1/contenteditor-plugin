@@ -5,5 +5,5 @@ Route::group(['prefix' => 'contenteditor'], function () {
     Route::post('image/save', 'Samuell\ContentEditor\Http\Controllers\ImageController@save');
 
     // Additional styles route
-    Route::get('styles.css', 'Samuell\ContentEditor\Http\Controllers\AdditionalStylesController@render');
+    Route::get('styles', 'Samuell\ContentEditor\Http\Controllers\AdditionalStylesController@render');
 });
