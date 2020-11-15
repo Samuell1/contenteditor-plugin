@@ -19,6 +19,7 @@ class Settings extends Model
     public function initSettingsData()
     {
         $this->additional_styles = File::get(plugins_path() . '/samuell/contenteditor/assets/additional-css.css');
+        $this->enabled_buttons = ["bold", "italic", "link", "align-left", "align-center", "align-right", "heading", "subheading", "subheading3", "subheading4", "subheading5", "paragraph", "unordered-list", "ordered-list", "table", "indent", "unindent", "line-break", "image", "video", "preformatted"];
     }
 
     // list of buttons
