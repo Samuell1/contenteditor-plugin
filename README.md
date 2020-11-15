@@ -34,6 +34,7 @@ http://octobercms.com/plugin/samuell-contenteditor
 * `bold`           => Bold (b)
 * `italic`         => Italic (i)
 * `link`           => Link (a)
+* `small`          => Small (small)
 * `align-left`     => Align left
 * `align-center`   => Align center
 * `align-right`    => Align right
