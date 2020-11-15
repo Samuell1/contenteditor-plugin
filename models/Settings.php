@@ -26,8 +26,8 @@ class Settings extends Model
     public function getEnabledButtonsOptions()
     {
         return [
-            'bold'           => 'Bold (b)',
-            'italic'         => 'Italic (i)',
+            'bold'           => 'Bold (strong)',
+            'italic'         => 'Italic (em)',
             'link'           => 'Link (a)',
             'small'          => 'Small (small)',
 

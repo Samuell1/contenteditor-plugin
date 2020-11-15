@@ -14,6 +14,10 @@ var siteUrl = document.location.origin; // get site url for requests
 
 ContentTools.RESTRICTED_ATTRIBUTES['*'] = []; // allow style attribute on elements
 
+// Change bold and italic default tags by WCAG2 accessibility guidelines
+ContentTools.Tools.Bold.tagName = 'strong';
+ContentTools.Tools.Bold.Italic = 'em';
+
 /*
 * Save event
 */
