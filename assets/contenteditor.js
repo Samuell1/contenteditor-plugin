@@ -132,6 +132,22 @@ ContentTools.Tools.Subheading5 = (function (_super) {
 
 })(ContentTools.Tools.Heading);
 
+ContentTools.Tools.Small = (function (_super) {
+    __extends(Small, _super);
+
+    function Small() {
+        return Small.__super__.constructor.apply(this, arguments);
+    }
+
+    ContentTools.ToolShelf.stow(Small, 'small');
+    Small.label = 'Small';
+    Small.icon = 'small';
+    Small.tagName = 'small';
+
+    return Small;
+
+})(ContentTools.Tools.Heading);
+
 /*
 * Image uploader
 */

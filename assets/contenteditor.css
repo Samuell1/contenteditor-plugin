@@ -11,3 +11,6 @@
     content: "H";
     font-size: 10px;
 }
+.ct-widget .ct-tool--small:before {
+    content: "S";
+}

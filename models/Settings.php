@@ -29,6 +29,7 @@ class Settings extends Model
             'bold'           => 'Bold (b)',
             'italic'         => 'Italic (i)',
             'link'           => 'Link (a)',
+            'small'          => 'Small (small)',
 
             'align-left'     => 'Align left',
             'align-center'   => 'Align center',
