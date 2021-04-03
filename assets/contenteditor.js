@@ -16,7 +16,7 @@ ContentTools.RESTRICTED_ATTRIBUTES['*'] = []; // allow style attribute on elemen
 
 // Change bold and italic default tags by WCAG2 accessibility guidelines
 ContentTools.Tools.Bold.tagName = 'strong';
-ContentTools.Tools.Bold.Italic = 'em';
+ContentTools.Tools.Italic.tagName = 'em';
 
 /*
 * Save event
