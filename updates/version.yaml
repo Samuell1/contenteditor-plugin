@@ -22,7 +22,7 @@
 1.0.8: Fix BackendAuth issue for build 420
 1.0.9: Fix missing fixture in render component
 1.1.0: Fix SELF prefix for fixtures
-1.2.0: 
+1.2.0:
     - Support classes for fixture
     - Fix renderCount if component using other alias name
 1.2.1:
@@ -52,3 +52,6 @@
 1.3.2:
     - Add small tag tool
     - Changed tools b to strong and i to em
+1.3.3:
+    - Allow only image extensions for upload
+    - Fix italic tag name
