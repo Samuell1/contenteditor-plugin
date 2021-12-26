@@ -1,7 +1,8 @@
-<?php namespace Samuell\ContentEditor\Models;
+<?php
+
+namespace Samuell\ContentEditor\Models;
 
 use File;
-use Lang;
 use Model;
 use Less_Parser;
 use Cache;
@@ -19,7 +20,7 @@ class Settings extends Model
     public function initSettingsData()
     {
         $this->additional_styles = File::get(plugins_path() . '/samuell/contenteditor/assets/additional-css.css');
-        $this->enabled_buttons = ["bold", "italic", "link", "align-left", "align-center", "align-right", "heading", "subheading", "subheading3", "subheading4", "subheading5", "paragraph", "unordered-list", "ordered-list", "table", "indent", "unindent", "line-break", "image", "video", "preformatted"];
+        $this->enabled_buttons = ['bold', 'italic', 'link', 'align-left', 'align-center', 'align-right', 'heading', 'subheading', 'subheading3', 'subheading4', 'subheading5', 'paragraph', 'unordered-list', 'ordered-list', 'table', 'indent', 'unindent', 'line-break', 'image', 'video', 'preformatted'];
     }
 
     // list of buttons
@@ -91,12 +92,14 @@ class Settings extends Model
         if (Cache::has(self::CACHE_KEY)) {
             return Cache::get(self::CACHE_KEY);
         }
+
         try {
             $customCss = self::compileCss();
             Cache::forever(self::CACHE_KEY, $customCss);
         } catch (Exception $ex) {
             $customCss = '/* ' . $ex->getMessage() . ' */';
         }
+
         return $customCss;
     }
 
