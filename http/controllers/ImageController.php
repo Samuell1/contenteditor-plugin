@@ -87,7 +87,7 @@ class ImageController extends Controller
         $width = post('width');
         $height = post('height');
         $filePath = post('filePath');
-        $relativeFilePath = config('cms.storage.media.path') . $filePath;
+        $relativeFilePath = config('cms.storage.media.path', config('system.storage.media.path')) . $filePath;
 
         if ($crop && $crop != '0,0,1,1') {
             $crop = explode(',', $crop);
