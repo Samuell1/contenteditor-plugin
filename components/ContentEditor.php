@@ -1,4 +1,6 @@
-<?php namespace Samuell\ContentEditor\Components;
+<?php
+
+namespace Samuell\ContentEditor\Components;
 
 use Cache;
 use File;
@@ -151,10 +153,10 @@ class ContentEditor extends ComponentBase
         // Compability with Rainlab.StaticPage
         // StaticPages content does not append default locale to file.
         if ($this->fileExists($file) && $locale === $defaultLocale) {
-          return $file;
+            return $file;
         }
 
-        return substr_replace($file, '.'.$locale, strrpos($file, '.'), 0);
+        return substr_replace($file, '.' . $locale, strrpos($file, '.'), 0);
     }
 
     public function checkEditor()
@@ -163,7 +165,8 @@ class ContentEditor extends ComponentBase
         return $backendUser && $backendUser->hasAccess('samuell.contenteditor.editor');
     }
 
-    public function fileExists($file) {
+    public function fileExists($file)
+    {
         return File::exists((new Content)->getFilePath($file));
     }
 
