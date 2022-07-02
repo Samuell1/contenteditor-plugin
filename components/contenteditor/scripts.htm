@@ -1,0 +1,26 @@
+{% put scripts %}
+    <script type="text/javascript">
+    /* CONTENT EDITOR SCRIPT START */
+    ContentTools.StylePalette.add([
+        {% for style in __SELF__.palettes %}
+            new ContentTools.Style('{{ style.name ? style.name : style.class }}', '{{ style.class }}', {{ style.allowed_tags|json_encode()|raw }}),
+        {% endfor %}
+    ]);
+    editor.toolbox().tools([
+                                [
+                                {% for value in __SELF__.buttons %}
+                                    '{{ value }}',
+                                {% endfor %}
+                                ],
+                                [
+                                    'undo',
+                                    'redo',
+                                    'remove'
+                                ]
+                            ]);
+    /* CONTENT EDITOR SCRIPT END */
+    </script>
+{% endput %}
+{% put styles  %}
+    <link rel="stylesheet" href="/contenteditor/styles">
+{% endput %}
