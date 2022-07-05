@@ -13,7 +13,7 @@ http://octobercms.com/plugin/samuell-contenteditor
 * Use this code in your page code and link the editor to a content file or set name to autocreate new file
 
 *Simple example:*
-```
+```twig
 {% component 'contenteditor' file="filename_in_content.htm" %}
 ```
 
@@ -25,7 +25,7 @@ http://octobercms.com/plugin/samuell-contenteditor
 * class - Class for element, mostly useful for fixtures
 
 *Example:*
-```
+```twig
 {% component 'contenteditor' file="filename_in_content.htm" fixture="h3" tools="bold,italic" class="my-class" %}
 ```
 
