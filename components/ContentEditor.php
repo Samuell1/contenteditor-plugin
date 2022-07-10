@@ -1,10 +1,13 @@
-<?php namespace Samuell\ContentEditor\Components;
+<?php
+
+namespace Samuell\ContentEditor\Components;
 
 use Cache;
 use File;
 use BackendAuth;
 use Cms\Classes\Content;
 use Cms\Classes\ComponentBase;
+use RainLab\Translate\Classes\Translator;
 
 use Samuell\ContentEditor\Models\Settings;
 
@@ -73,6 +76,9 @@ class ContentEditor extends ComponentBase
             $this->addCss('assets/contenteditor.css');
             $this->addJs('assets/content-tools.min.js');
             $this->addJs('assets/contenteditor.js');
+
+            // Add scripts only once
+            $this->renderPartial('@scripts.htm');
         }
     }
 
@@ -125,7 +131,7 @@ class ContentEditor extends ComponentBase
     {
         if (Content::load($this->getTheme(), $this->file)) {
             return $this->renderContent($this->file);
-        } else if (Content::load($this->getTheme(), $this->defaultFile)) { // if no locale file exists -> render the default, without language suffix
+        } elseif (Content::load($this->getTheme(), $this->defaultFile)) { // if no locale file exists -> render the default, without language suffix
             return $this->renderContent($this->defaultFile);
         }
 
@@ -144,17 +150,17 @@ class ContentEditor extends ComponentBase
 
     public function setTranslateFile($file)
     {
-        $translate = \RainLab\Translate\Classes\Translator::instance();
+        $translate = Translator::instance();
         $defaultLocale = $translate->getDefaultLocale();
         $locale = $translate->getLocale();
 
         // Compability with Rainlab.StaticPage
         // StaticPages content does not append default locale to file.
         if ($this->fileExists($file) && $locale === $defaultLocale) {
-          return $file;
+            return $file;
         }
 
-        return substr_replace($file, '.'.$locale, strrpos($file, '.'), 0);
+        return substr_replace($file, '.' . $locale, strrpos($file, '.'), 0);
     }
 
     public function checkEditor()
@@ -163,12 +169,13 @@ class ContentEditor extends ComponentBase
         return $backendUser && $backendUser->hasAccess('samuell.contenteditor.editor');
     }
 
-    public function fileExists($file) {
+    public function fileExists($file)
+    {
         return File::exists((new Content)->getFilePath($file));
     }
 
     public function translateExists()
     {
-        return class_exists('\RainLab\Translate\Classes\Translator');
+        return class_exists(Translator::class);
     }
 }

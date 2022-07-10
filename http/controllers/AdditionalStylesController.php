@@ -1,4 +1,6 @@
-<?php namespace Samuell\ContentEditor\Http\Controllers;
+<?php
+
+namespace Samuell\ContentEditor\Http\Controllers;
 
 use Response;
 use Illuminate\Routing\Controller;

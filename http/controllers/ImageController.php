@@ -1,19 +1,23 @@
-<?php namespace Samuell\ContentEditor\Http\Controllers;
+<?php
+
+namespace Samuell\ContentEditor\Http\Controllers;
 
 use File;
+use Lang;
 use Input;
 use Response;
 use Exception;
+use SystemException;
 use ApplicationException;
-use Cms\Classes\MediaLibrary;
+use Media\Classes\MediaLibrary;
+use October\Rain\Resize\Resizer;
 use Illuminate\Routing\Controller;
-use October\Rain\Database\Attach\Resizer;
 use Samuell\ContentEditor\Models\Settings;
 use October\Rain\Filesystem\Definitions as FileDefinitions;
 
 /**
  * ImageController
- * 
+ *
  * Handle content editor image upload
  */
 class ImageController extends Controller
@@ -32,7 +36,7 @@ class ImageController extends Controller
              * Convert uppcare case file extensions to lower case
              */
             $extension = strtolower($uploadedFile->getClientOriginalExtension());
-            $fileName = File::name($fileName).'.'.$extension;
+            $fileName = File::name($fileName) . '.' . $extension;
 
             /*
              * File name contains non-latin characters, attempt to slug the value
@@ -54,29 +58,28 @@ class ImageController extends Controller
             $path = MediaLibrary::validatePath($path);
 
             $realPath = empty(trim($uploadedFile->getRealPath()))
-               ? $uploadedFile->getPath() . DIRECTORY_SEPARATOR . $uploadedFile->getFileName()
-               : $uploadedFile->getRealPath();
+                ? $uploadedFile->getPath() . DIRECTORY_SEPARATOR . $uploadedFile->getFileName()
+                : $uploadedFile->getRealPath();
 
             MediaLibrary::instance()->put(
-                $path.'/'.$fileName,
+                $path . '/' . $fileName,
                 File::get($realPath)
             );
 
             list($width, $height) = getimagesize($uploadedFile);
 
             return Response::json([
-                'url'      => MediaLibrary::instance()->getPathUrl($path.'/'.$fileName),
-                'filePath' => $path.'/'.$fileName,
+                'url'      => MediaLibrary::instance()->getPathUrl($path . '/' . $fileName),
+                'filePath' => $path . '/' . $fileName,
                 'filename' => $fileName,
                 'size'     => [
-                   $width,
-                   $height
-               ]
+                    $width,
+                    $height
+                ]
             ]);
         } catch (Exception $ex) {
             throw new ApplicationException($ex);
         }
-
     }
 
     public function save()
@@ -86,14 +89,14 @@ class ImageController extends Controller
         $width = post('width');
         $height = post('height');
         $filePath = post('filePath');
-        $relativeFilePath = config('cms.storage.media.path').$filePath;
+        $relativeFilePath = config('cms.storage.media.path', config('system.storage.media.path')) . $filePath;
 
         if ($crop && $crop != '0,0,1,1') {
             $crop = explode(',', $crop);
 
             $file = MediaLibrary::instance()->get(post('filePath'));
-            $tempDirectory = temp_path().'/contenteditor';
-            $tempFilePath = temp_path().post('filePath');
+            $tempDirectory = temp_path() . '/contenteditor';
+            $tempFilePath = temp_path() . post('filePath');
             File::makeDirectory($tempDirectory, 0777, true, true);
 
             if (!File::put($tempFilePath, $file)) {

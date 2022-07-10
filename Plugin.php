@@ -1,4 +1,6 @@
-<?php namespace Samuell\ContentEditor;
+<?php
+
+namespace Samuell\ContentEditor;
 
 use System\Classes\PluginBase;
 

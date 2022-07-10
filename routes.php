@@ -1,14 +1,17 @@
 <?php
 
 use Samuell\ContentEditor\Http\Middleware\EditorPermissionsMiddleware;
+use Samuell\ContentEditor\Http\Controllers\ImageController;
+use Samuell\ContentEditor\Http\Controllers\AdditionalStylesController;
 
 Route::group(['prefix' => 'contenteditor'], function () {
 
-    Route::middleware(['web', EditorPermissionsMiddleware::class])->group(function () {
-        Route::post('image/upload', 'Samuell\ContentEditor\Http\Controllers\ImageController@upload');
-        Route::post('image/save', 'Samuell\ContentEditor\Http\Controllers\ImageController@save');
-    });
+    Route::middleware(['web', EditorPermissionsMiddleware::class])
+        ->group(function () {
+            Route::post('image/upload', [ImageController::class, 'upload']);
+            Route::post('image/save', [ImageController::class, 'save']);
+        });
 
     // Additional styles route
-    Route::get('styles', 'Samuell\ContentEditor\Http\Controllers\AdditionalStylesController@render');
+    Route::get('styles', [AdditionalStylesController::class, 'render']);
 });
