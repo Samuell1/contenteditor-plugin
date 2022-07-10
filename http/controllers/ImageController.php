@@ -3,13 +3,15 @@
 namespace Samuell\ContentEditor\Http\Controllers;
 
 use File;
+use Lang;
 use Input;
 use Response;
 use Exception;
+use SystemException;
 use ApplicationException;
-use Cms\Classes\MediaLibrary;
+use Media\Classes\MediaLibrary;
+use October\Rain\Resize\Resizer;
 use Illuminate\Routing\Controller;
-use October\Rain\Database\Attach\Resizer;
 use Samuell\ContentEditor\Models\Settings;
 use October\Rain\Filesystem\Definitions as FileDefinitions;
 

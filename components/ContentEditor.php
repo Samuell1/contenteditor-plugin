@@ -7,6 +7,7 @@ use File;
 use BackendAuth;
 use Cms\Classes\Content;
 use Cms\Classes\ComponentBase;
+use RainLab\Translate\Classes\Translator;
 
 use Samuell\ContentEditor\Models\Settings;
 
@@ -130,7 +131,7 @@ class ContentEditor extends ComponentBase
     {
         if (Content::load($this->getTheme(), $this->file)) {
             return $this->renderContent($this->file);
-        } else if (Content::load($this->getTheme(), $this->defaultFile)) { // if no locale file exists -> render the default, without language suffix
+        } elseif (Content::load($this->getTheme(), $this->defaultFile)) { // if no locale file exists -> render the default, without language suffix
             return $this->renderContent($this->defaultFile);
         }
 
@@ -149,7 +150,7 @@ class ContentEditor extends ComponentBase
 
     public function setTranslateFile($file)
     {
-        $translate = \RainLab\Translate\Classes\Translator::instance();
+        $translate = Translator::instance();
         $defaultLocale = $translate->getDefaultLocale();
         $locale = $translate->getLocale();
 
@@ -175,6 +176,6 @@ class ContentEditor extends ComponentBase
 
     public function translateExists()
     {
-        return class_exists('\RainLab\Translate\Classes\Translator');
+        return class_exists(Translator::class);
     }
 }
