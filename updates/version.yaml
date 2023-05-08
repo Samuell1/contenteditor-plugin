@@ -42,7 +42,7 @@
 1.2.7:
     - Fix issue with undefined tools
 1.3.0:
-    - "!!! Added content editor own permissions and remove old permission handling that depended on system permissions"
+    - Added content editor own permissions and remove old permission handling that depended on system permissions
     - Use separate route for rendering additional css
     - Fix discarding of CSS class when defined in file but saved via CMS
     - Use image path as relative path
@@ -57,3 +57,5 @@
     - Fix italic tag name
 1.3.4:
     - Small fixes & code cleanup
+1.3.5:
+    - Fix to correct version structure
