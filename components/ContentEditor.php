@@ -2,13 +2,12 @@
 
 namespace Samuell\ContentEditor\Components;
 
-use Cache;
-use File;
 use BackendAuth;
-use Cms\Classes\Content;
+use Cache;
 use Cms\Classes\ComponentBase;
+use Cms\Classes\Content;
+use File;
 use RainLab\Translate\Classes\Translator;
-
 use Samuell\ContentEditor\Models\Settings;
 
 class ContentEditor extends ComponentBase
@@ -27,7 +26,7 @@ class ContentEditor extends ComponentBase
     public function componentDetails()
     {
         return [
-            'name'        => 'Content Editor',
+            'name' => 'Content Editor',
             'description' => 'Edit your front-end content in page.'
         ];
     }
@@ -36,25 +35,25 @@ class ContentEditor extends ComponentBase
     {
         return [
             'file' => [
-                'title'       => 'Content file',
+                'title' => 'Content file',
                 'description' => 'Content block filename to edit, optional',
-                'default'     => '',
-                'type'        => 'dropdown'
+                'default' => '',
+                'type' => 'dropdown'
             ],
             'fixture' => [
-                'title'       => 'Content block tag with disabled toolbox',
+                'title' => 'Content block tag with disabled toolbox',
                 'description' => 'Fixed name for content block, useful for inline texts (headers, spans...)',
-                'default'     => ''
+                'default' => ''
             ],
             'tools' => [
-                'title'       => 'List of enabled tools',
+                'title' => 'List of enabled tools',
                 'description' => 'List of enabled tools for selected content (for all use *)',
-                'default'     => ''
+                'default' => ''
             ],
             'class' => [
-                'title'       => 'CSS classes',
+                'title' => 'CSS classes',
                 'description' => 'CSS class or classes that should be applied to the content block when rendered',
-                'default'     => ''
+                'default' => ''
             ],
         ];
     }

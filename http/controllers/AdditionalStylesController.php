@@ -2,8 +2,8 @@
 
 namespace Samuell\ContentEditor\Http\Controllers;
 
-use Response;
 use Illuminate\Routing\Controller;
+use Response;
 use Samuell\ContentEditor\Models\Settings;
 
 class AdditionalStylesController extends Controller

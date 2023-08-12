@@ -1,11 +1,11 @@
 <?php namespace Samuell\ContentEditor\Http\Middleware;
 
-use Closure;
 use Backend\Facades\BackendAuth;
+use Closure;
 
 /**
  * EditorPermissionsMiddleware
- * 
+ *
  * Allow only backend user with editor permission
  */
 class EditorPermissionsMiddleware

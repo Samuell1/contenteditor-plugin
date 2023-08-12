@@ -1,8 +1,8 @@
 <?php
 
-use Samuell\ContentEditor\Http\Middleware\EditorPermissionsMiddleware;
-use Samuell\ContentEditor\Http\Controllers\ImageController;
 use Samuell\ContentEditor\Http\Controllers\AdditionalStylesController;
+use Samuell\ContentEditor\Http\Controllers\ImageController;
+use Samuell\ContentEditor\Http\Middleware\EditorPermissionsMiddleware;
 
 Route::group(['prefix' => 'contenteditor'], function () {
 

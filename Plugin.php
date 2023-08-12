@@ -18,10 +18,10 @@ class Plugin extends PluginBase
     public function pluginDetails()
     {
         return [
-            'name'        => 'Content Editor',
+            'name' => 'Content Editor',
             'description' => 'Front-end content editor',
-            'author'      => 'Samuell',
-            'icon'        => 'icon-edit'
+            'author' => 'Samuell',
+            'icon' => 'icon-edit'
         ];
     }
 
@@ -36,11 +36,11 @@ class Plugin extends PluginBase
     {
         return [
             'settings' => [
-                'label'       => 'Content Editor Settings',
+                'label' => 'Content Editor Settings',
                 'description' => 'Manage main editor settings.',
-                'icon'        => 'icon-cog',
-                'class'       => 'Samuell\ContentEditor\Models\Settings',
-                'order'       => 500,
+                'icon' => 'icon-cog',
+                'class' => 'Samuell\ContentEditor\Models\Settings',
+                'order' => 500,
                 'permissions' => ['samuell.contenteditor.access_settings']
             ]
         ];
