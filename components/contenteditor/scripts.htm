@@ -1,7 +1,7 @@
 {% put scripts %}
     <script type="text/javascript">
         /* CONTENT EDITOR SCRIPT START */
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('page:loaded', function() {
             ContentTools.StylePalette.add([
                 {% for style in __SELF__.palettes %}
                     new ContentTools.Style('{{ style.name ? style.name : style.class }}', '{{ style.class }}', {{ style.allowed_tags|json_encode()|raw }}),
