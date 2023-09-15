@@ -59,3 +59,7 @@
     - Small fixes & code cleanup
 1.3.5:
     - Fix to correct version structure
+1.3.6:
+    - OCMS v3 support
+    - JS optimalizations
+    - Code cleanup
