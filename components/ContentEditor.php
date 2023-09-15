@@ -73,8 +73,8 @@ class ContentEditor extends ComponentBase
             // put content tools js + css
             $this->addCss('assets/content-tools.min.css');
             $this->addCss('assets/contenteditor.css');
-            $this->addJs('assets/content-tools.min.js');
-            $this->addJs('assets/contenteditor.js');
+            $this->addJs('assets/content-tools.min.js', ['defer' => true]);
+            $this->addJs('assets/contenteditor.js', ['defer' => true]);
 
             // Add scripts only once
             $this->renderPartial('@scripts.htm');

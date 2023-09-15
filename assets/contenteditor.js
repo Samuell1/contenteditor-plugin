@@ -28,8 +28,8 @@ editor.addEventListener('saved', function (ev) {
 
     for (name in regions) {
         if (regions.hasOwnProperty(name)) {
-            var component = $('*[data-file="' + name + '"]').data('component'); // check for component name
-            $.request(component, {
+            var component = document.querySelector('*[data-file="' + name + '"]').dataset.component; // check for component name
+            oc.ajax(component, {
                 data: {
                     file: name,
                     content: regions[name]
