@@ -2,6 +2,8 @@
 
 namespace Samuell\ContentEditor;
 
+use Samuell\ContentEditor\Components\ContentEditor;
+use Samuell\ContentEditor\Models\Settings;
 use System\Classes\PluginBase;
 
 /**
@@ -9,13 +11,7 @@ use System\Classes\PluginBase;
  */
 class Plugin extends PluginBase
 {
-
-    /**
-     * Returns information about this plugin.
-     *
-     * @return array
-     */
-    public function pluginDetails()
+    public function pluginDetails(): array
     {
         return [
             'name' => 'Content Editor',
@@ -25,28 +21,28 @@ class Plugin extends PluginBase
         ];
     }
 
-    public function registerComponents()
+    public function registerComponents(): array
     {
         return [
-            'Samuell\ContentEditor\Components\ContentEditor' => 'contenteditor',
+            ContentEditor::class => 'contenteditor',
         ];
     }
 
-    public function registerSettings()
+    public function registerSettings(): array
     {
         return [
             'settings' => [
                 'label' => 'Content Editor Settings',
                 'description' => 'Manage main editor settings.',
                 'icon' => 'icon-cog',
-                'class' => 'Samuell\ContentEditor\Models\Settings',
+                'class' => Settings::class,
                 'order' => 500,
                 'permissions' => ['samuell.contenteditor.access_settings']
             ]
         ];
     }
 
-    public function registerPermissions()
+    public function registerPermissions(): array
     {
         return [
             'samuell.contenteditor.editor' => [

@@ -19,11 +19,11 @@ class ContentEditor extends ComponentBase
     public $tools;
     public $class;
     public $buttons;
-    public $palettes;
+    public array $palettes;
 
-    public $renderCount;
+    public int $renderCount;
 
-    public function componentDetails()
+    public function componentDetails(): array
     {
         return [
             'name' => 'Content Editor',
@@ -31,7 +31,7 @@ class ContentEditor extends ComponentBase
         ];
     }
 
-    public function defineProperties()
+    public function defineProperties(): array
     {
         return [
             'file' => [
@@ -63,7 +63,7 @@ class ContentEditor extends ComponentBase
         return Content::sortBy('baseFileName')->lists('baseFileName', 'fileName');
     }
 
-    public function onRun()
+    public function onRun(): void
     {
         if ($this->checkEditor()) {
 
@@ -102,7 +102,7 @@ class ContentEditor extends ComponentBase
         }
     }
 
-    public function onSave()
+    public function onSave(): void
     {
         if ($this->checkEditor()) {
 
@@ -126,7 +126,7 @@ class ContentEditor extends ComponentBase
         }
     }
 
-    public function getFile()
+    public function getFile(): mixed
     {
         if (Content::load($this->getTheme(), $this->file)) {
             return $this->renderContent($this->file);
@@ -147,7 +147,7 @@ class ContentEditor extends ComponentBase
         return $file;
     }
 
-    public function setTranslateFile($file)
+    public function setTranslateFile($file): array|string
     {
         $translate = Translator::instance();
         $defaultLocale = $translate->getDefaultLocale();
@@ -162,18 +162,18 @@ class ContentEditor extends ComponentBase
         return substr_replace($file, '.' . $locale, strrpos($file, '.'), 0);
     }
 
-    public function checkEditor()
+    public function checkEditor(): bool
     {
         $backendUser = BackendAuth::getUser();
         return $backendUser && $backendUser->hasAccess('samuell.contenteditor.editor');
     }
 
-    public function fileExists($file)
+    public function fileExists($file): bool
     {
         return File::exists((new Content)->getFilePath($file));
     }
 
-    public function translateExists()
+    public function translateExists(): bool
     {
         return class_exists(Translator::class);
     }

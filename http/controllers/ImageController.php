@@ -138,11 +138,8 @@ class ImageController extends Controller
 
     /**
      * Check for blocked / unsafe file extensions
-     *
-     * @param string
-     * @return bool
      */
-    protected function validateFileType($name)
+    protected function validateFileType(string $name): bool
     {
         $extension = strtolower(File::extension($name));
 
@@ -157,11 +154,8 @@ class ImageController extends Controller
 
     /**
      * Validate a proposed media item file name.
-     *
-     * @param string
-     * @return bool
      */
-    protected function validateFileName($name)
+    protected function validateFileName(string $name): bool
     {
         if (!preg_match('/^[\w@\.\s_\-]+$/iu', $name)) {
             return false;
